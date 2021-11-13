@@ -14,6 +14,8 @@
  *
  */
 
+namespace WPSquidge\Includes;
+
 class WP_Squidge_WebP extends WP_Squidge_Service
 {
     /**
@@ -31,22 +33,16 @@ class WP_Squidge_WebP extends WP_Squidge_Service
      */
     public function __construct()
     {
+        parent::__construct(self::CMD_NAME);
         add_action('delete_attachment', [$this, 'delete']);
     }
 
     /**
-     * Check's if the webp library is installed.
+     * Converts all image sizes if they are jpg or png
+     * to webp with the given file extension.
      *
-     * @return bool
-     */
-    public function installed(): bool
-    {
-        return $this->command_exist(self::CMD_NAME);
-    }
-
-    /**
      * @param array $images
-     * @return mixed|void
+     * @return void
      */
     public function convert(array $images)
     {
@@ -75,5 +71,4 @@ class WP_Squidge_WebP extends WP_Squidge_Service
             }
         }
     }
-
 }

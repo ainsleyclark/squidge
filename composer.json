@@ -9,5 +9,7 @@
             "email": "info@ainsleyclark.com"
         }
     ],
-    "require": {}
+    "require": {
+        "htmlburger/carbon-fields": "^3.3"
+    }
 }

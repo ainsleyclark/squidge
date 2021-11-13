@@ -11,7 +11,24 @@
  *
  */
 
+namespace WPSquidge\Includes;
+
 abstract class WP_Squidge_Service {
+
+    /**
+     * The command name to run
+     *
+     * @var string
+     */
+    protected $cmd_name = '';
+
+    /**
+     * @param string $cmd_name
+     */
+    public function __construct(string $cmd_name)
+    {
+        $this->cmd_name = $cmd_name;
+    }
 
     /**
      * Converts or compresses an image.
@@ -22,21 +39,13 @@ abstract class WP_Squidge_Service {
     public abstract function convert(array $images);
 
     /**
-     * Check's if the CMD is installed.
-     *
-     * @return bool
-     */
-    protected abstract function installed(): bool;
-
-    /**
      * Checks if a command exists.
      *
-     * @param $cmd
      * @return bool
      */
-    protected function command_exist($cmd): bool
+    protected function installed(): bool
     {
-        $return = shell_exec(sprintf("which %s", escapeshellarg($cmd)));
+        $return = shell_exec(sprintf("which %s", escapeshellarg($this->cmd_name)));
         return !empty($return);
     }
 }
