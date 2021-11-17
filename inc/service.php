@@ -3,7 +3,6 @@
 /**
  * Service
  *
- *
  * @package     WP Squidge
  * @version     1.0.0
  * @category    Class
@@ -11,7 +10,7 @@
  *
  */
 
-namespace WPSquidge\Includes;
+//namespace WPSquidge\Includes;
 
 abstract class WP_Squidge_Service {
 
