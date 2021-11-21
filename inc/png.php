@@ -43,5 +43,6 @@ class WP_Squidge_PNG extends WP_Squidge_Service {
     protected function installed(): bool
     {
         // TODO: Implement installed() method.
+        return false;
     }
 }

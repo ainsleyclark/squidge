@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdb9e40f946871971f3884aa472c4ce2",
+    "content-hash": "8c3ac3ce6de1c3490dbefdb73aa9e910",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,6 +152,64 @@
                 }
             ],
             "time": "2021-09-13T08:19:44+00:00"
+        },
+        {
+            "name": "htmlburger/carbon-field-number",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/htmlburger/carbon-field-number.git",
+                "reference": "3bddfaf256472d6071c62e566d011e1f2cdae0c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/htmlburger/carbon-field-number/zipball/3bddfaf256472d6071c62e566d011e1f2cdae0c6",
+                "reference": "3bddfaf256472d6071c62e566d011e1f2cdae0c6",
+                "shasum": ""
+            },
+            "require": {
+                "htmlburger/carbon-fields": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "field.php"
+                ],
+                "psr-4": {
+                    "Carbon_Field_Number\\": "core/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Plamen Kostadinov",
+                    "email": "pkostadinov.2create@gmail.com"
+                },
+                {
+                    "name": "Atanas Angelov",
+                    "email": "atanas.angelov.dev@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Viktor Vasilev",
+                    "email": "liberalcho@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Carbon Fields extension, that adds a number field type.",
+            "homepage": "https://github.com/htmlburger/carbon-field-number/",
+            "keywords": [
+                "carbon-field",
+                "carbon-field-number",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/htmlburger/carbon-field-number/tree/development"
+            },
+            "time": "2018-12-21T12:45:35+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
@@ -334,5 +392,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

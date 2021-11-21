@@ -10,7 +10,7 @@
  *
  */
 
-//namespace WPSquidge\Includes;
+namespace WPSquidge\Includes;
 
 abstract class WP_Squidge_Service {
 
@@ -27,6 +27,8 @@ abstract class WP_Squidge_Service {
     public function __construct(string $cmd_name)
     {
         $this->cmd_name = $cmd_name;
+        add_action("add_attachment", [$this, 'convert']);
+        add_action("edit_attachment", [$this, 'convert']);
     }
 
     /**
@@ -35,14 +37,22 @@ abstract class WP_Squidge_Service {
      * @param array $images
      * @return mixed
      */
-    public abstract function convert(array $images);
+    public abstract function convert(int $id);
+
+    /**
+     *
+     */
+    protected function get_images()
+    {
+
+    }
 
     /**
      * Checks if a command exists.
      *
      * @return bool
      */
-    protected function installed(): bool
+    public function installed(): bool
     {
         $return = shell_exec(sprintf("which %s", escapeshellarg($this->cmd_name)));
         return !empty($return);
