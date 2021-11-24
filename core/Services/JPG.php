@@ -52,7 +52,7 @@ class JPG extends Service implements Convertor
 		if ($mime != Mimes::$JPEG) {
 			return;
 		}
-		exec(sprintf('%s --strip-all --overwrite --max=%d %s', self::cmd_name(), $args['quality'], $filepath));
+		exec(sprintf('%s --strip-all --overwrite --max=%d %s 2> /dev/null', self::cmd_name(), $args['quality'], $filepath));
 		Logger::info("Successfully compressed image JPG file: " . $filepath);
 	}
 

@@ -31,7 +31,7 @@ class PNG extends Service implements Convertor
 	 * DEFAULT_QUALITY is the default image quality
 	 * when processing a PNG image.
 	 */
-	const DEFAULT_QUALITY = 80;
+	const DEFAULT_OPTIMIZATION = 'o2';
 
 	/**
 	 * Compresses all image sizes have a jpg mime type
@@ -47,12 +47,12 @@ class PNG extends Service implements Convertor
 	public static function convert($filepath, $mime, $args)
 	{
 		if (!isset($args['quality'])) {
-			$args['quality'] = self::DEFAULT_QUALITY;
+			$args['quality'] = self::DEFAULT_OPTIMIZATION;
 		}
 		if ($mime != Mimes::$PNG) {
 			return;
 		}
-		exec(sprintf('%s -clobber -strip all -o %d %s', self::cmd_name(), $args['quality'], $filepath));
+		exec(sprintf('%s -clobber -strip all -o %d %s 2> /dev/null', self::cmd_name(), $args['optimization'], $filepath));
 		Logger::info("Successfully compressed image PNG file: " . $filepath);
 	}
 

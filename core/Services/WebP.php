@@ -43,7 +43,7 @@ class WebP extends Service implements Convertor
 		if ($mime != Mimes::$PNG && $mime != Mimes::$JPEG) {
 			return;
 		}
-		exec(sprintf('%s -q %d %s -o %s', self::cmd_name(), 80, $filepath, $filepath . self::extension()));
+		exec(sprintf('%s -q %d %s -o %s 2> /dev/null', self::cmd_name(), 80, $filepath, $filepath . self::extension()));
 		Logger::info("Successfully converted to WebP file: " . $filepath . self::extension());
 	}
 

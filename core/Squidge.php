@@ -68,12 +68,16 @@ class Squidge
 	 */
 	private function initialize()
 	{
-		$this->define('WP_SQUIDGE_URL', plugin_dir_url(__FILE__));
-		$this->define('WP_SQUIDGE_PATH', plugin_dir_path(__FILE__));
-		$this->define('WP_SQUIDGE_BASENAME', plugin_basename(__FILE__));
+		$this->define('WP_SQUIDGE_URL', plugin_dir_url(dirname(__FILE__)));
+		$this->define('WP_SQUIDGE_PATH', plugin_dir_path(dirname(__FILE__)));
+		$this->define('WP_SQUIDGE_BASENAME', plugin_basename(dirname(__FILE__)));
 		$this->define('WP_SQUIDGE_VERSION', $this->version);
 		new Admin\Fields();
 		new Admin\Upload();
+	}
+
+	public function test() {
+
 	}
 
 	/**
