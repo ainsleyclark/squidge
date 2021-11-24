@@ -7,7 +7,7 @@
  * images to webp with the .webp extension using
  * the cwebp library.
  *
- * @package     WP Squidge
+ * @package     Squidge
  * @version     1.0.0
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge

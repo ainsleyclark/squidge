@@ -5,7 +5,7 @@
  *
  * TODO
  *
- * @package     WP Squidge
+ * @package     Squidge
  * @version     1.0.0
  * @category    Admin
  * @repo        https://github.com/ainsleyclark/wp-squidge
@@ -17,13 +17,15 @@ namespace Squidge\Container;
 use Squidge\Services\Avif;
 use Squidge\Services\JPG;
 use Squidge\Services\PNG;
+use Squidge\Services\SVG;
 use Squidge\Services\WebP;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-class Container {
+class Container
+{
 
 	/**
 	 * The JPG Service.
@@ -54,6 +56,13 @@ class Container {
 	public $AVIF;
 
 	/**
+	 * The SVG Service.
+	 *
+	 * @var
+	 */
+	public $SVG;
+
+	/**
 	 * Creates a new container for services.
 	 *
 	 * @since    1.0.0
@@ -65,5 +74,6 @@ class Container {
 		$this->PNG = new PNG();
 		$this->WebP = new WebP();
 		$this->AVIF = new Avif();
+		$this->SVG = new SVG();
 	}
 }

@@ -6,7 +6,7 @@
  * Register Carbon Field options for the
  * admin part of the section.
  *
- * @package     WP Squidge
+ * @package     Squidge
  * @version     1.0.0
  * @category    Admin
  * @repo        https://github.com/ainsleyclark/wp-squidge
@@ -106,14 +106,9 @@ class Fields
 					->set_help_text('Select this box to enable AVIF conversion.'),
 			])
 			->add_tab(__('SVG'), [
-				Field::make('select', 'wp', 'Opti PNG Level')
-					->add_options([
-						'left'   => 'Left',
-						'center' => 'Center',
-						'right'  => 'Right',
-					])
-					->set_width(100)
-					->set_help_text('Pick a color')
+				Field::make('checkbox', 'wp_squidge_svg_enable', 'Enable SVG compression.')
+					->set_default_value(true)
+					->set_help_text('Select this box to enable SVG compression.'),
 			]);
 	}
 }

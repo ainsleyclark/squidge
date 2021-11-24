@@ -1,11 +1,9 @@
 <?php
 
 /**
- * JPG
+ * SVG
  *
- * JPG is responsible for compressing JPG images
- * with the JPG mime type using the jpegoptim
- * library.
+ * TODO
  *
  * @package     Squidge
  * @version     1.0.0
@@ -22,15 +20,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-class JPG extends Service
+class SVG extends Service
 {
-	/**
-	 * The quality of the JPG convert.
-	 *
-	 * @var int
-	 */
-	public $Quality = 80;
-
 	/**
 	 * Sets up the service.
 	 *
@@ -39,7 +30,7 @@ class JPG extends Service
 	 */
 	public function __construct()
 	{
-		parent::__construct('jpegoptim');
+		parent::__construct('svgo');
 	}
 
 	/**
@@ -54,10 +45,10 @@ class JPG extends Service
 	 */
 	public function convert($filepath, $mime)
 	{
-		if ($mime != JPEG_MIME) {
+		if ($mime != SVG_MIME) {
 			return;
 		}
-		exec(sprintf('%s --strip-all --overwrite --max=%d %s', $this->cmd_name, $this->Quality, $filepath));
-		Logger::info("Successfully compressed image JPG file: " . $filepath);
+		exec(sprintf('%s --input=%s', $this->cmd_name, $filepath));
+		Logger::info("Successfully compressed SVG file: " . $filepath);
 	}
 }
