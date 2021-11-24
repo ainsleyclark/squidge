@@ -7,7 +7,7 @@
  * and executing commands.
  *
  * @package     Squidge
- * @version     1.0.0
+ * @version     0.1.0
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -57,7 +57,7 @@ abstract class Service
 	 *
 	 * @param string $cmd_name
 	 * @param string $extension
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function __construct($cmd_name, $extension = '')
@@ -70,7 +70,7 @@ abstract class Service
 	 * Converts or compresses an image.
 	 *
 	 * @return mixed
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public abstract function convert($filepath, $mime);
@@ -80,7 +80,7 @@ abstract class Service
 	 *
 	 * @param $attachment
 	 * @return mixed
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function process($attachment)
@@ -128,7 +128,7 @@ abstract class Service
 	 *
 	 * @param $id
 	 * @return mixed
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function delete($id)
@@ -159,7 +159,7 @@ abstract class Service
 	 * Checks if a command exists.
 	 *
 	 * @return bool
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function installed()
@@ -176,7 +176,7 @@ abstract class Service
 	 *
 	 * @param $path
 	 * @return string
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	private function get_file_path($path)
@@ -193,7 +193,7 @@ abstract class Service
 	 *
 	 * @param $file
 	 * @return false|string
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	private function get_mime_type($file)

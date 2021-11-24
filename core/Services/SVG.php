@@ -6,7 +6,7 @@
  * TODO
  *
  * @package     Squidge
- * @version     1.0.0
+ * @version     0.1.0
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -25,7 +25,7 @@ class SVG extends Service
 	/**
 	 * Sets up the service.
 	 *
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function __construct()
@@ -40,7 +40,7 @@ class SVG extends Service
 	 * @param $filepath
 	 * @param $mime
 	 * @return void
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function convert($filepath, $mime)

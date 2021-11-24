@@ -7,7 +7,7 @@
  * error messages for the plugin.
  *
  * @package     Squidge
- * @version     1.0.0
+ * @version     0.1.0
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -22,7 +22,7 @@ class Logger
 	 * Info logs an information message.
 	 *
 	 * @param $message
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	static function info($message)
@@ -34,7 +34,7 @@ class Logger
 	 * Error logs an error message.
 	 *
 	 * @param $message
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	static function error($message)
@@ -48,15 +48,15 @@ class Logger
 	 *
 	 * @param $message
 	 * @param $error
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	static function log($message, $error)
 	{
-		$type = 'INFO';
+		$type = '[INFO] ';
 		if ($error) {
-			$type = 'ERROR';
+			$type = '[ERROR]';
 		}
-		error_log(sprintf('Squidge: [%s] - %s', $type, $message));
+		error_log(sprintf('Squidge: %s - %s', $type, $message));
 	}
 }

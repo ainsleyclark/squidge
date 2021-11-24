@@ -6,7 +6,7 @@
  * TODO
  *
  * @package     Squidge
- * @version     1.0.0
+ * @version     0.1.0
  * @category    Admin
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -56,16 +56,9 @@ class Container
 	public $AVIF;
 
 	/**
-	 * The SVG Service.
-	 *
-	 * @var
-	 */
-	public $SVG;
-
-	/**
 	 * Creates a new container for services.
 	 *
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	public function __construct()
@@ -74,6 +67,5 @@ class Container
 		$this->PNG = new PNG();
 		$this->WebP = new WebP();
 		$this->AVIF = new Avif();
-		$this->SVG = new SVG();
 	}
 }

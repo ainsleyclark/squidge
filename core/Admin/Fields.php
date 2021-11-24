@@ -7,7 +7,7 @@
  * admin part of the section.
  *
  * @package     Squidge
- * @version     1.0.0
+ * @version     0.1.0
  * @category    Admin
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -26,7 +26,10 @@ class Fields
 {
 
 	/**
+	 * Boots carbon and register's custom fields.
 	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function __construct()
 	{
@@ -35,7 +38,10 @@ class Fields
 	}
 
 	/**
+	 *Load carbon fields and reassigns vendor path.
 	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function load_carbon_fields()
 	{
@@ -44,7 +50,10 @@ class Fields
 	}
 
 	/**
+	 * Registers the admin fields (options).
 	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function register_carbon_fields()
 	{
@@ -104,11 +113,6 @@ class Fields
 				Field::make('checkbox', 'wp_squidge_avif_enable', 'Enable AVIF Conversion')
 					->set_default_value(true)
 					->set_help_text('Select this box to enable AVIF conversion.'),
-			])
-			->add_tab(__('SVG'), [
-				Field::make('checkbox', 'wp_squidge_svg_enable', 'Enable SVG compression.')
-					->set_default_value(true)
-					->set_help_text('Select this box to enable SVG compression.'),
 			]);
 	}
 }

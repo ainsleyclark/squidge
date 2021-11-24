@@ -6,7 +6,7 @@
  * Main squidge class.
  *
  * @package     Squidge
- * @version     1.0.0
+ * @version     0.1.0
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -27,7 +27,7 @@ final class Squidge
 	 *
 	 * @var string
 	 */
-	var $version = '1.0.0';
+	var $version = '0.1.0';
 
 	/**
 	 * The instance of Squidge.
@@ -58,7 +58,7 @@ final class Squidge
 	 * @date    24/11/2021
 	 * @param void
 	 * @return    void
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 *
 	 */
 	private function initialize()
@@ -78,7 +78,7 @@ final class Squidge
 	 * @param string $name The constant name.
 	 * @param mixed $value The constant value.
 	 * @return    void
-	 * @since    1.0.0
+	 * @since 0.1.0
 	 *
 	 */
 	function define($name, $value = true)
