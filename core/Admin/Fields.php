@@ -84,7 +84,6 @@ class Fields
 			->set_help_text($result);
 
 
-
 		if (WebP::installed()) {
 			$webp_field
 				->set_attribute('placeholder', 'Active')
