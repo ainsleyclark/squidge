@@ -7,6 +7,7 @@
  *
  * @package     Squidge
  * @version     0.1.0
+ * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -15,12 +16,16 @@
 namespace Squidge;
 
 use Squidge\Admin;
+use Squidge\Services\AVIF;
+use Squidge\Services\JPG;
+use Squidge\Services\PNG;
+use Squidge\Services\WebP;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-final class Squidge
+class Squidge
 {
 	/**
 	 * The plugin version number.
@@ -57,7 +62,7 @@ final class Squidge
 	 *
 	 * @date    24/11/2021
 	 * @param void
-	 * @return    void
+	 * @return void
 	 * @since 0.1.0
 	 *
 	 */

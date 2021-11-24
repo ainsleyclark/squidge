@@ -8,6 +8,7 @@
  *
  * @package     Squidge
  * @version     0.1.0
+ * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -15,111 +16,63 @@
 
 namespace Squidge\Services;
 
-use Squidge\Log\Logger;
+use Exception;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-/**
- * Jpeg Mime Type
- */
-const JPEG_MIME = 'image/jpeg';
 
-/**
- * PNG Mime Type
- */
-const PNG_MIME = 'image/png';
-
-/**
- * SVG Mime Type
- */
-const SVG_MIME = 'image/svg+xml';
-
-
-abstract class Service
+class Service
 {
-	/**
-	 * The command name to run
-	 *
-	 * @var string
-	 */
-	protected $cmd_name = '';
-
-	/**
-	 * @var string
-	 */
-	protected $extension = '';
-
-	/**
-	 * Constructs command name and extension
-	 * if one is passed.
-	 *
-	 * @param string $cmd_name
-	 * @param string $extension
-	 * @since 0.1.0
-	 * @date 24/11/2021
-	 */
-	public function __construct($cmd_name, $extension = '')
-	{
-		$this->cmd_name = $cmd_name;
-		$this->extension = $extension;
-	}
-
-	/**
-	 * Converts or compresses an image.
-	 *
-	 * @return mixed
-	 * @since 0.1.0
-	 * @date 24/11/2021
-	 */
-	public abstract function convert($filepath, $mime);
 
 	/**
 	 * Processes the file attachment.
 	 *
 	 * @param $attachment
-	 * @return mixed
+	 * @param $args
+	 * @return void
+	 * @throws Exception
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function process($attachment)
+	public static function process($attachment, $args)
 	{
+		// If the attachment is an ID, obtain the metadata.
+		if (is_int($attachment)) {
+			$attachment = wp_get_attachment_metadata($attachment);
+		}
+
 		// Return if the cwebp library is not installed.
-		if (!$this->installed()) {
-			Logger::error($this->cmd_name . " is not installed");
-			return $attachment;
+		if (!self::installed()) {
+			throw new Exception(self::$cmd_name . " is not installed");
 		}
 
 		// Check if the file key exists.
 		if (!isset($attachment['file'])) {
-			Logger::error("File attachment is not set.");
-			return $attachment;
+			throw new Exception("File attachment is not set.");
 		}
 
 		// Obtain the file and check if it exists.
-		$mainFile = $this->get_file_path($attachment['file']);
+		$mainFile = self::get_file_path($attachment['file']);
 		if (!$mainFile) {
-			Logger::error("File does not exist");
-			return $attachment;
+			throw new Exception("File does not exist");
 		}
 
 		// Convert main image.
-		$this->convert($mainFile, $this->get_mime_type($mainFile));
+		static::convert($mainFile, self::get_mime_type($mainFile), $args);
 
 		// Loop over the sizes and convert them.
 		foreach ($attachment['sizes'] as $size) {
 			if (!isset($size['file'])) {
 				continue;
 			}
-			$path = $this->get_file_path($size['file']);
+			$path = self::get_file_path($size['file']);
 			if (!$path) {
 				continue;
 			}
-			$this->convert($path, $this->get_mime_type($path));
+			static::convert($path, self::get_mime_type($path), $args);
 		}
-
-		return $attachment;
 	}
 
 	/**
@@ -127,32 +80,28 @@ abstract class Service
 	 * with the image (if the file exists).
 	 *
 	 * @param $id
-	 * @return mixed
+	 * @return void
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function delete($id)
+	public static function delete($id)
 	{
 		// Delete the original file.
-		$original = wp_get_original_image_path($id) . $this->extension;
+		$original = wp_get_original_image_path($id) . static::extension();
 		if (file_exists($original)) {
 			unlink($original);
-			Logger::info("Successfully deleted file: " . $original);
 		}
 
 		// Delete the image sizes.
 		$sizes = get_intermediate_image_sizes();
 		foreach ($sizes as $size) {
 			$src = wp_get_attachment_image_src($id, $size);
-			$path = $this->get_file_path($src[0] . $this->extension);
+			$path = self::get_file_path($src[0] . static::extension());
 			if (!$path) {
 				continue;
 			}
 			unlink($path);
-			Logger::info("Successfully deleted file: " . $path);
 		}
-
-		return $id;
 	}
 
 	/**
@@ -162,9 +111,9 @@ abstract class Service
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function installed()
+	public static function installed()
 	{
-		$return = shell_exec(sprintf("which %s", escapeshellarg($this->cmd_name)));
+		$return = shell_exec(sprintf("which %s", escapeshellarg(static::cmd_name())));
 		return !empty($return);
 	}
 
@@ -179,7 +128,7 @@ abstract class Service
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	private function get_file_path($path)
+	private static function get_file_path($path)
 	{
 		$file = wp_get_upload_dir()['path'] . DIRECTORY_SEPARATOR . basename($path);
 		if (file_exists($file)) {
@@ -196,7 +145,7 @@ abstract class Service
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	private function get_mime_type($file)
+	private static function get_mime_type($file)
 	{
 		return mime_content_type($file);
 	}

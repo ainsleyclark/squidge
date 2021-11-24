@@ -9,14 +9,16 @@
  *
  * @package     Squidge
  * @version     0.1.0
- * @category    Admin
+ * @author      Ainsley Clark
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
  */
 
 namespace Squidge\Admin;
 
-use Squidge\Container\Container;
+use Exception;
+use Squidge\Log\Logger;
+use Squidge\Services\WebP;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
@@ -24,10 +26,6 @@ if (!defined('ABSPATH')) {
 
 class Upload
 {
-	/**
-	 * @var Container
-	 */
-	private $service;
 
 	/**
 	 * Adds filters to process web and jpg
@@ -38,15 +36,14 @@ class Upload
 	 */
 	public function __construct()
 	{
-		$this->service = new Container();
 		add_filter('big_image_size_threshold', '__return_false');
 		add_filter("wp_generate_attachment_metadata", [$this, 'process_webp'], 20, 1);
-		add_filter("wp_generate_attachment_metadata", [$this, 'process_avif'], 30, 1);
-		add_filter("wp_generate_attachment_metadata", [$this, 'process_jpg'], 40, 1);
-		add_filter("wp_generate_attachment_metadata", [$this, 'process_png'], 50, 1);
+//		add_filter("wp_generate_attachment_metadata", [$this, 'process_avif'], 30, 1);
+//		add_filter("wp_generate_attachment_metadata", [$this, 'process_jpg'], 40, 1);
+//		add_filter("wp_generate_attachment_metadata", [$this, 'process_png'], 50, 1);
 		// TODO: SVG
 		add_filter("delete_attachment", [$this, 'delete_webp'], 20, 1);
-		add_filter("delete_attachment", [$this, 'delete_avif'], 20, 1);
+//		add_filter("delete_attachment", [$this, 'delete_avif'], 20, 1);
 	}
 
 	/**
@@ -59,10 +56,17 @@ class Upload
 	 */
 	public function process_jpg($attachment)
 	{
-		$this->service->JPG->Quality = carbon_get_theme_option('wp_squidge_jpg_quality');
-		if (carbon_get_theme_option('wp_squidge_jpg_enable')) {
-			$this->service->JPG->process($attachment);
+		if (!carbon_get_theme_option('wp_squidge_jpg_enable')) {
+			return $attachment;
 		}
+
+		try {
+			//JPG:: carbon_get_theme_option('wp_squidge_jpg_quality');
+			JPG::process($attachment);
+		} catch (Exception $e) {
+			Logger::error($e->getMessage());
+		}
+
 		return $attachment;
 	}
 
@@ -76,10 +80,17 @@ class Upload
 	 */
 	public function process_png($attachment)
 	{
-		$this->service->PNG->Quality = carbon_get_theme_option('wp_squidge_png_quality');
-		if (carbon_get_theme_option('wp_squidge_png_enable')) {
-			$this->service->PNG->process($attachment);
+		if (!carbon_get_theme_option('wp_squidge_png_enable')) {
+			return $attachment;
 		}
+
+		try {
+			//PNG::$Quality = carbon_get_theme_option('wp_squidge_png_quality');
+			PNG::process($attachment);
+		} catch (Exception $e) {
+			Logger::error($e->getMessage());
+		}
+
 		return $attachment;
 	}
 
@@ -94,9 +105,16 @@ class Upload
 	 */
 	public function process_webp($attachment)
 	{
-		$this->service->WebP->Quality = carbon_get_theme_option('wp_squidge_webp_quality');
-		if (carbon_get_theme_option('wp_squidge_webp_enable')) {
-			$this->service->WebP->process($attachment);
+		if (!carbon_get_theme_option('wp_squidge_webp_enable')) {
+			return $attachment;
+		}
+
+		try {
+			//WebP::Quality = carbon_get_theme_option('wp_squidge_webp_quality');
+			WebP::process($attachment);
+		} catch (Exception $e) {
+			Logger::error($e->getMessage());
+
 		}
 		return $attachment;
 	}
@@ -110,13 +128,20 @@ class Upload
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function process_avif($attachment)
-	{
-		if (carbon_get_theme_option('wp_squidge_avif_enable')) {
-			$this->service->AVIF->process($attachment);
-		}
-		return $attachment;
-	}
+//	public function process_avif($attachment)
+//	{
+//		if (!carbon_get_theme_option('wp_squidge_avif_enable')) {
+//			return $attachment;
+//		}
+//
+//		try {
+//			AVIF::process($attachment);
+//		} catch (Exception $e) {
+//			Logger::error($e->getMessage());
+//		}
+//
+//		return $attachment;
+//	}
 
 	/**
 	 * Deletes .webp files when the attachment is
@@ -129,7 +154,7 @@ class Upload
 	 */
 	public function delete_webp($attachment)
 	{
-		$this->service->WebP->delete($attachment);
+		WebP::delete($attachment);
 		return $attachment;
 	}
 
@@ -144,7 +169,7 @@ class Upload
 	 */
 	public function delete_avif($attachment)
 	{
-		$this->service->AVIF->delete($attachment);
+		AVIF::delete($attachment);
 		return $attachment;
 	}
 }

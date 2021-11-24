@@ -9,6 +9,7 @@
  *
  * @package     Squidge
  * @version     0.1.0
+ * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -22,14 +23,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-class PNG extends Service
+class PNG extends Service implements Convertor
 {
-	/**
-	 * The quality of the JPG convert.
-	 *
-	 * @var int
-	 */
-	public $Quality = 80;
 
 	/**
 	 * Sets up the service.
@@ -48,16 +43,21 @@ class PNG extends Service
 	 *
 	 * @param $filepath
 	 * @param $mime
+	 * @param $args
 	 * @return void
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function convert($filepath, $mime)
+	public static function convert($filepath, $mime, $args)
 	{
+		if (!isset($args['quality'])) {
+			// TODO convert to CONST
+			$args['quality'] = 80;
+		}
 		if ($mime != PNG_MIME) {
 			return;
 		}
-		exec(sprintf('%s -clobber -strip all -o %d %s', $this->cmd_name, $this->Quality, $filepath));
+		exec(sprintf('%s -clobber -strip all -o %d %s', self::$cmd_name, $args['quality'], $filepath));
 		Logger::info("Successfully compressed image PNG file: " . $filepath);
 	}
 }

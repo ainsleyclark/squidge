@@ -1,14 +1,15 @@
 <?php
 
 /**
- * JPG
+ * AVIF
  *
- * JPG is responsible for compressing JPG images
- * with the JPG mime type using the jpegoptim
- * library.
+ * Avif is responsible for converting JPG and PNG
+ * images to webp with the .webp extension using
+ * the cwebp library.
  *
  * @package     Squidge
  * @version     0.1.0
+ * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -22,15 +23,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-class JPG extends Service
+class AVIF extends Service implements Convertor
 {
-	/**
-	 * The quality of the JPG convert.
-	 *
-	 * @var int
-	 */
-	public $Quality = 80;
-
 	/**
 	 * Sets up the service.
 	 *
@@ -39,7 +33,7 @@ class JPG extends Service
 	 */
 	public function __construct()
 	{
-		parent::__construct('jpegoptim');
+		parent::__construct('avifenc', '.avif');
 	}
 
 	/**
@@ -52,12 +46,12 @@ class JPG extends Service
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function convert($filepath, $mime)
+	public static function convert($filepath, $mime)
 	{
-		if ($mime != JPEG_MIME) {
+		if ($mime != PNG_MIME && $mime != JPEG_MIME) {
 			return;
 		}
-		exec(sprintf('%s --strip-all --overwrite --max=%d %s', $this->cmd_name, $this->Quality, $filepath));
-		Logger::info("Successfully compressed image JPG file: " . $filepath);
+		exec(sprintf('%s --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s', self::$cmd_name, $filepath, $filepath . self::$extension));
+		Logger::info("Successfully converted to Avif file: " . $filepath . self::$extension);
 	}
 }

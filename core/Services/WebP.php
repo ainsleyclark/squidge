@@ -9,6 +9,7 @@
  *
  * @package     Squidge
  * @version     0.1.0
+ * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
@@ -16,31 +17,15 @@
 
 namespace Squidge\Services;
 
+use Mimes;
 use Squidge\Log\Logger;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-class WebP extends Service
+class WebP extends Service implements Convertor
 {
-	/**
-	 * The quality of the WebP convert.
-	 *
-	 * @var int
-	 */
-	public $Quality = 80;
-
-	/**
-	 * Sets up the service.
-	 *
-	 * @since 0.1.0
-	 * @date 24/11/2021
-	 */
-	public function __construct()
-	{
-		parent::__construct('cwebp', '.webp');
-	}
 
 	/**
 	 * Compress all image sizes if they are jpg or png
@@ -48,16 +33,33 @@ class WebP extends Service
 	 *
 	 * @param $filepath
 	 * @param $mime
+	 * @param $args
 	 * @return void
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public function convert($filepath, $mime)
+	public static function convert($filepath, $mime, $args)
 	{
-		if ($mime != PNG_MIME && $mime != JPEG_MIME) {
+		if ($mime != Mimes::PNG() && $mime != Mimes::JPEG()) {
 			return;
 		}
-		exec(sprintf('%s -q %d %s -o %s', $this->cmd_name, $this->Quality, $filepath, $filepath . $this->extension));
-		Logger::info("Successfully converted to WebP file: " . $filepath . $this->extension);
+		exec(sprintf('%s -q %d %s -o %s', self::cmd_name(), 80, $filepath, $filepath . self::extension()));
+		Logger::info("Successfully converted to WebP file: " . $filepath . self::extension());
+	}
+
+	/**
+	 * @return string
+	 */
+	public static function cmd_name()
+	{
+		return "cwebp";
+	}
+
+	/**
+	 * @return string
+	 */
+	public static function extension()
+	{
+		return ".webp";
 	}
 }
