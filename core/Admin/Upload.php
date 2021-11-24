@@ -18,6 +18,9 @@ namespace Squidge\Admin;
 
 use Exception;
 use Squidge\Log\Logger;
+use Squidge\Services\AVIF;
+use Squidge\Services\JPG;
+use Squidge\Services\PNG;
 use Squidge\Services\WebP;
 
 if (!defined('ABSPATH')) {
@@ -38,12 +41,11 @@ class Upload
 	{
 		add_filter('big_image_size_threshold', '__return_false');
 		add_filter("wp_generate_attachment_metadata", [$this, 'process_webp'], 20, 1);
-//		add_filter("wp_generate_attachment_metadata", [$this, 'process_avif'], 30, 1);
-//		add_filter("wp_generate_attachment_metadata", [$this, 'process_jpg'], 40, 1);
-//		add_filter("wp_generate_attachment_metadata", [$this, 'process_png'], 50, 1);
-		// TODO: SVG
+		add_filter("wp_generate_attachment_metadata", [$this, 'process_avif'], 30, 1);
+		add_filter("wp_generate_attachment_metadata", [$this, 'process_jpg'], 40, 1);
+		add_filter("wp_generate_attachment_metadata", [$this, 'process_png'], 50, 1);
 		add_filter("delete_attachment", [$this, 'delete_webp'], 20, 1);
-//		add_filter("delete_attachment", [$this, 'delete_avif'], 20, 1);
+		add_filter("delete_attachment", [$this, 'delete_avif'], 20, 1);
 	}
 
 	/**
@@ -61,8 +63,10 @@ class Upload
 		}
 
 		try {
-			//JPG:: carbon_get_theme_option('wp_squidge_jpg_quality');
-			JPG::process($attachment);
+			$args = [
+				'quality' => carbon_get_theme_option('wp_squidge_jpg_quality'),
+			];
+			JPG::process($attachment, $args);
 		} catch (Exception $e) {
 			Logger::error($e->getMessage());
 		}
@@ -85,8 +89,10 @@ class Upload
 		}
 
 		try {
-			//PNG::$Quality = carbon_get_theme_option('wp_squidge_png_quality');
-			PNG::process($attachment);
+			$args = [
+				'quality' => carbon_get_theme_option('wp_squidge_webp_quality'),
+			];
+			PNG::process($attachment, $args);
 		} catch (Exception $e) {
 			Logger::error($e->getMessage());
 		}
@@ -110,8 +116,10 @@ class Upload
 		}
 
 		try {
-			//WebP::Quality = carbon_get_theme_option('wp_squidge_webp_quality');
-			WebP::process($attachment);
+			$args = [
+				'quality' => carbon_get_theme_option('wp_squidge_webp_quality'),
+			];
+			WebP::process($attachment, $args);
 		} catch (Exception $e) {
 			Logger::error($e->getMessage());
 
@@ -128,20 +136,20 @@ class Upload
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-//	public function process_avif($attachment)
-//	{
-//		if (!carbon_get_theme_option('wp_squidge_avif_enable')) {
-//			return $attachment;
-//		}
-//
-//		try {
-//			AVIF::process($attachment);
-//		} catch (Exception $e) {
-//			Logger::error($e->getMessage());
-//		}
-//
-//		return $attachment;
-//	}
+	public function process_avif($attachment)
+	{
+		if (!carbon_get_theme_option('wp_squidge_avif_enable')) {
+			return $attachment;
+		}
+
+		try {
+			AVIF::process($attachment, []);
+		} catch (Exception $e) {
+			Logger::error($e->getMessage());
+		}
+
+		return $attachment;
+	}
 
 	/**
 	 * Deletes .webp files when the attachment is

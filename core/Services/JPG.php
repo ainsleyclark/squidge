@@ -18,6 +18,7 @@
 namespace Squidge\Services;
 
 use Squidge\Log\Logger;
+use Squidge\Types\Mimes;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
@@ -25,23 +26,12 @@ if (!defined('ABSPATH')) {
 
 class JPG extends Service implements Convertor
 {
-	/**
-	 * The quality of the JPG convert.
-	 *
-	 * @var int
-	 */
-	public static $Quality = 80;
 
 	/**
-	 * Sets up the service.
-	 *
-	 * @since 0.1.0
-	 * @date 24/11/2021
+	 * DEFAULT_QUALITY is the default image quality
+	 * when processing a PNG image.
 	 */
-	public function __construct()
-	{
-		parent::__construct('jpegoptim');
-	}
+	const DEFAULT_QUALITY = 80;
 
 	/**
 	 * Compresses all image sizes have a png mime type
@@ -49,16 +39,40 @@ class JPG extends Service implements Convertor
 	 *
 	 * @param $filepath
 	 * @param $mime
+	 * @param $args
 	 * @return void
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public static function convert($filepath, $mime)
+	public static function convert($filepath, $mime, $args)
 	{
-		if ($mime != JPEG_MIME) {
+		if (!isset($args['quality'])) {
+			$args['quality'] = self::DEFAULT_QUALITY;
+		}
+		if ($mime != Mimes::$JPEG) {
 			return;
 		}
-		exec(sprintf('%s --strip-all --overwrite --max=%d %s', self::$cmd_name, self::$Quality, $filepath));
+		exec(sprintf('%s --strip-all --overwrite --max=%d %s', self::cmd_name(), $args['quality'], $filepath));
 		Logger::info("Successfully compressed image JPG file: " . $filepath);
+	}
+
+	/**
+	 * Returns the command name of the service.
+	 *
+	 * @return string
+	 */
+	public static function cmd_name()
+	{
+		return "jpegoptim";
+	}
+
+	/**
+	 * Returns the extension to convert too.
+	 *
+	 * @return string
+	 */
+	public static function extension()
+	{
+		return "";
 	}
 }

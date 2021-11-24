@@ -18,6 +18,7 @@
 namespace Squidge\Services;
 
 use Squidge\Log\Logger;
+use Squidge\Types\Mimes;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
@@ -25,16 +26,6 @@ if (!defined('ABSPATH')) {
 
 class AVIF extends Service implements Convertor
 {
-	/**
-	 * Sets up the service.
-	 *
-	 * @since 0.1.0
-	 * @date 24/11/2021
-	 */
-	public function __construct()
-	{
-		parent::__construct('avifenc', '.avif');
-	}
 
 	/**
 	 * Compresses all image sizes have a png mime type
@@ -42,16 +33,37 @@ class AVIF extends Service implements Convertor
 	 *
 	 * @param $filepath
 	 * @param $mime
+	 * @param $args
 	 * @return void
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	public static function convert($filepath, $mime)
+	public static function convert($filepath, $mime, $args)
 	{
-		if ($mime != PNG_MIME && $mime != JPEG_MIME) {
+		if ($mime != Mimes::$PNG && $mime != Mimes::$JPEG) {
 			return;
 		}
-		exec(sprintf('%s --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s', self::$cmd_name, $filepath, $filepath . self::$extension));
-		Logger::info("Successfully converted to Avif file: " . $filepath . self::$extension);
+		exec(sprintf('%s --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s', self::cmd_name(), $filepath, $filepath . self::extension()));
+		Logger::info("Successfully converted to Avif file: " . $filepath . self::extension());
+	}
+
+	/**
+	 * Returns the command name of the service.
+	 *
+	 * @return string
+	 */
+	public static function cmd_name()
+	{
+		return "avifenc";
+	}
+
+	/**
+	 * Returns the extension to convert too.
+	 *
+	 * @return string
+	 */
+	public static function extension()
+	{
+		return ".avif";
 	}
 }

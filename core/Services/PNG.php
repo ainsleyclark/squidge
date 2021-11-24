@@ -18,6 +18,7 @@
 namespace Squidge\Services;
 
 use Squidge\Log\Logger;
+use Squidge\Types\Mimes;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
@@ -27,15 +28,10 @@ class PNG extends Service implements Convertor
 {
 
 	/**
-	 * Sets up the service.
-	 *
-	 * @since 0.1.0
-	 * @date 24/11/2021
+	 * DEFAULT_QUALITY is the default image quality
+	 * when processing a PNG image.
 	 */
-	public function __construct()
-	{
-		parent::__construct('optipng', '.png');
-	}
+	const DEFAULT_QUALITY = 80;
 
 	/**
 	 * Compresses all image sizes have a jpg mime type
@@ -51,13 +47,32 @@ class PNG extends Service implements Convertor
 	public static function convert($filepath, $mime, $args)
 	{
 		if (!isset($args['quality'])) {
-			// TODO convert to CONST
-			$args['quality'] = 80;
+			$args['quality'] = self::DEFAULT_QUALITY;
 		}
-		if ($mime != PNG_MIME) {
+		if ($mime != Mimes::$PNG) {
 			return;
 		}
-		exec(sprintf('%s -clobber -strip all -o %d %s', self::$cmd_name, $args['quality'], $filepath));
+		exec(sprintf('%s -clobber -strip all -o %d %s', self::cmd_name(), $args['quality'], $filepath));
 		Logger::info("Successfully compressed image PNG file: " . $filepath);
+	}
+
+	/**
+	 * Returns the command name of the service.
+	 *
+	 * @return string
+	 */
+	public static function cmd_name()
+	{
+		return "optipng";
+	}
+
+	/**
+	 * Returns the extension to convert too.
+	 *
+	 * @return string
+	 */
+	public static function extension()
+	{
+		return "";
 	}
 }

@@ -13,20 +13,21 @@
  *
  */
 
+namespace Squidge\Types;
+
 class Mimes {
 
 	/**
-	 * @return string
+	 * PNG Mime Type.
+	 *
+	 * @var string
 	 */
-	public static function PNG()
-	{
-		return 'image/png';
-	}
+	public static $PNG = "image/png";
 
 	/**
-	 * @return string
+	 * JPEG Mime Type.
+	 *
+	 * @var string
 	 */
-	public static function JPEG() {
-		return 'image/jpeg';
-	}
+	public static $JPEG = 'image/jpeg';
 }
