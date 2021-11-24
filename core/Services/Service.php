@@ -137,6 +137,7 @@ abstract class Service
 		$original = wp_get_original_image_path($id) . $this->extension;
 		if (file_exists($original)) {
 			unlink($original);
+			Logger::info("Successfully deleted file: " . $original);
 		}
 
 		// Delete the image sizes.
@@ -148,6 +149,7 @@ abstract class Service
 				continue;
 			}
 			unlink($path);
+			Logger::info("Successfully deleted file: " . $path);
 		}
 
 		return $id;
