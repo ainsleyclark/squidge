@@ -3,7 +3,7 @@
 /**
  * Mimes
  *
- * TODO
+ * Mime times for files stored here.
  *
  * @package     Squidge
  * @version     0.1.0
@@ -15,19 +15,7 @@
 
 namespace Squidge\Types;
 
-class Mimes {
-
-	/**
-	 * PNG Mime Type.
-	 *
-	 * @var string
-	 */
-	public static $PNG = "image/png";
-
-	/**
-	 * JPEG Mime Type.
-	 *
-	 * @var string
-	 */
-	public static $JPEG = 'image/jpeg';
+abstract class Mimes {
+	const PNG = "image/png";
+	const JPG = 'image/jpeg';
 }

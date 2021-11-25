@@ -35,6 +35,17 @@ class Squidge_CLI extends WP_CLI_Command
 	}
 
 	/**
+	 * Prints health status for each service.
+	 */
+	public function health()
+	{
+		$this->print_health("jpegoptim", JPG::installed());
+		$this->print_health("optipng", PNG::installed());
+		$this->print_health("cwebp", false);
+		$this->print_health("avifenc", AVIF::installed());
+	}
+
+	/**
 	 * Processes all images from the WordPress database
 	 * and compresses & optimises.
 	 *
@@ -42,10 +53,10 @@ class Squidge_CLI extends WP_CLI_Command
 	 * converted to .webp and .avif file formats.
 	 *
 	 * Args:
-	 * 	- jpeg=false : To disable JPG compression.
-	 * 	- png=false : To disable PNG compression.
-	 * 	- webp=false : To disable WebP conversion.
-	 * 	- avif=false : To disable AVIF conversion.
+	 *    - jpeg=false : To disable JPG compression.
+	 *    - png=false : To disable PNG compression.
+	 *    - webp=false : To disable WebP conversion.
+	 *    - avif=false : To disable AVIF conversion.
 	 *  -
 	 *
 	 * @param $args
@@ -79,7 +90,7 @@ class Squidge_CLI extends WP_CLI_Command
 		foreach ($query_images->posts as $image) {
 			$id = $image->ID;
 			$image_args = [
-				'quality' => $assoc_args['quality'],
+				'quality'      => $assoc_args['quality'],
 				'optimization' => $assoc_args['optimization']
 			];
 
@@ -128,7 +139,22 @@ class Squidge_CLI extends WP_CLI_Command
 			WP_CLI::success("Processed image: " . $image->post_title . PHP_EOL);
 		}
 
-		WP_CLI::success('Successfully processed images.' );
+		WP_CLI::success('Successfully processed images.');
+	}
+
+	/**
+	 * Prints the health information for a service.
+	 *
+	 * @param $type
+	 * @param $active
+	 */
+	private function print_health($type, $active)
+	{
+		if ($active) {
+			WP_CLI::success($type . " active.");
+			return;
+		}
+		WP_CLI::log(WP_CLI::colorize("%RError: %n") . $type . ' not installed, visit docs.');
 	}
 }
 

@@ -16,16 +16,12 @@
 namespace Squidge;
 
 use Squidge\Admin;
-use Squidge\Services\AVIF;
-use Squidge\Services\JPG;
-use Squidge\Services\PNG;
-use Squidge\Services\WebP;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-class Squidge
+final class Squidge
 {
 	/**
 	 * The plugin version number.
@@ -46,6 +42,8 @@ class Squidge
 	 * static instance, once.
 	 *
 	 * @return Squidge|null
+	 * @date 24/11/2021
+	 * @since 0.1.0
 	 */
 	public static function boot()
 	{
@@ -60,34 +58,32 @@ class Squidge
 	/**
 	 * Sets up the Squidge plugin.
 	 *
-	 * @date    24/11/2021
 	 * @param void
 	 * @return void
+	 * @date 24/11/2021
 	 * @since 0.1.0
 	 *
 	 */
 	private function initialize()
 	{
-		$this->define('WP_SQUIDGE_URL', plugin_dir_url(dirname(__FILE__)));
-		$this->define('WP_SQUIDGE_PATH', plugin_dir_path(dirname(__FILE__)));
-		$this->define('WP_SQUIDGE_BASENAME', plugin_basename(dirname(__FILE__)));
-		$this->define('WP_SQUIDGE_VERSION', $this->version);
+		$base = dirname(__FILE__);
+		$this->define('SQUIDGE_URL', plugin_dir_url($base));
+		$this->define('SQUIDGE_PATH', plugin_dir_path($base));
+		$this->define('SQUIDGE_BASENAME', plugin_basename(dirname($base)));
+		$this->define('SQUIDGE_TEMPLATE_PATH', dirname($base) . DIRECTORY_SEPARATOR . 'templates');
+		$this->define('SQUIDGE_VERSION', $this->version);
 		new Admin\Fields();
 		new Admin\Upload();
-	}
-
-	public function test() {
-
 	}
 
 	/**
 	 * Defines a constant if doesnt already exist.
 	 *
-	 * @date    24/11/2021
 	 * @param string $name The constant name.
 	 * @param mixed $value The constant value.
-	 * @return    void
+	 * @return void
 	 * @since 0.1.0
+	 * @date    24/11/2021
 	 *
 	 */
 	function define($name, $value = true)

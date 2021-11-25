@@ -9,8 +9,19 @@
  * @author email: info@ainsleyclark.com
  */
 
+.squidge .cf-field__help {
+	display: block;
+	margin-top: 0;
+	font-style: normal;
+	width: 100%;
+}
 
-.squidge-disabled {
+.squidge code {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.squidge-disabled input {
 	pointer-events:none;
 	user-select: none;
 }

@@ -14,7 +14,7 @@
  *
  */
 
-namespace Squidge\Services;
+namespace Squidge\Package;
 
 use Exception;
 

@@ -18,6 +18,8 @@
 namespace Squidge\Services;
 
 use Squidge\Log\Logger;
+use Squidge\Package\Convertor;
+use Squidge\Package\Service;
 use Squidge\Types\Mimes;
 
 if (!defined('ABSPATH')) {
@@ -49,7 +51,7 @@ class PNG extends Service implements Convertor
 		if (!isset($args['quality'])) {
 			$args['quality'] = self::DEFAULT_OPTIMIZATION;
 		}
-		if ($mime != Mimes::$PNG) {
+		if ($mime != Mimes::PNG) {
 			return;
 		}
 		exec(sprintf('%s -clobber -strip all -o %d %s 2> /dev/null', self::cmd_name(), $args['optimization'], $filepath));
@@ -60,6 +62,8 @@ class PNG extends Service implements Convertor
 	 * Returns the command name of the service.
 	 *
 	 * @return string
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public static function cmd_name()
 	{
@@ -70,6 +74,8 @@ class PNG extends Service implements Convertor
 	 * Returns the extension to convert too.
 	 *
 	 * @return string
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public static function extension()
 	{

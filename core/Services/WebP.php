@@ -18,6 +18,8 @@
 namespace Squidge\Services;
 
 use Squidge\Log\Logger;
+use Squidge\Package\Convertor;
+use Squidge\Package\Service;
 use Squidge\Types\Mimes;
 
 if (!defined('ABSPATH')) {
@@ -40,7 +42,7 @@ class WebP extends Service implements Convertor
 	 */
 	public static function convert($filepath, $mime, $args)
 	{
-		if ($mime != Mimes::$PNG && $mime != Mimes::$JPEG) {
+		if ($mime != Mimes::PNG && $mime != Mimes::JPG) {
 			return;
 		}
 		exec(sprintf('%s -q %d %s -o %s 2> /dev/null', self::cmd_name(), 80, $filepath, $filepath . self::extension()));
@@ -51,6 +53,8 @@ class WebP extends Service implements Convertor
 	 * Returns the command name of the service.
 	 *
 	 * @return string
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public static function cmd_name()
 	{
@@ -61,6 +65,8 @@ class WebP extends Service implements Convertor
 	 * Returns the extension to convert too.
 	 *
 	 * @return string
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public static function extension()
 	{

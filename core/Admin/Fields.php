@@ -9,7 +9,7 @@
  * @package     Squidge
  * @version     0.1.0
  * @author      Ainsley Clark
- * @category    Admin
+ * @category    Package
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
  */
@@ -18,7 +18,9 @@ namespace Squidge\Admin;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
+use Squidge\Services\AVIF;
 use Squidge\Services\JPG;
+use Squidge\Services\PNG;
 use Squidge\Services\WebP;
 
 if (!defined('ABSPATH')) {
@@ -49,7 +51,7 @@ class Fields
 	 */
 	public function load_carbon_fields()
 	{
-		define('\Carbon_Fields\URL', WP_SQUIDGE_URL . 'vendor/htmlburger/carbon-fields/');
+		define('\Carbon_Fields\URL', SQUIDGE_URL . 'vendor/htmlburger/carbon-fields/');
 		\Carbon_Fields\Carbon_Fields::boot();
 	}
 
@@ -58,8 +60,9 @@ class Fields
 	 */
 	public function styles_and_scripts()
 	{
-		wp_enqueue_style('admin-styles', WP_SQUIDGE_URL . '/assets/admin.css');
+		wp_enqueue_style('admin-styles', SQUIDGE_URL . '/assets/admin.css');
 	}
+
 
 	/**
 	 * Registers the admin fields (options).
@@ -69,38 +72,18 @@ class Fields
 	 */
 	public function register_carbon_fields()
 	{
-
-		ob_start();
-		global $health_valid;
-		$health_valid = false;
-		include WP_SQUIDGE_PATH . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'webp.php';
-		$result = ob_get_clean();
-
-
-		$webp_field = Field::make('text', 'squidge_webp_statusgf', 'WebP Status')
-			->set_attribute('readOnly')
-			->set_attribute('placeholder', 'Inactive')
-			->set_classes('squidge squidge-disabled squidge-health squidge-health-inactive')
-			->set_help_text($result);
-
-
-		if (WebP::installed()) {
-			$webp_field
-				->set_attribute('placeholder', 'Active')
-				->set_classes('squidge squidge-disabled squidge-health squidge-health-active')
-				->set_help_text($result);
-		}
-
-
 		Container::make('theme_options', 'Squidge')
 			->set_page_menu_title('Squidge Options')
 			->set_page_parent('options-general.php')
 			->add_fields([
 				Field::make('html', 'squidge_info')
-					->set_html('<h1>Welcome to WP Squidge</h1><p>Quisque mattis ligula.</p>'),
-				$webp_field,
+					->set_html($this->render_template('info.php')),
+				$this->get_health_field('jpg', 'jpg.php', 'JPG', JPG::installed()),
+				$this->get_health_field('png', 'png.php', 'PNG', PNG::installed()),
+				$this->get_health_field('webp', 'webp.php', 'WebP', WebP::installed()),
+				$this->get_health_field('avif', 'avif.php', 'AVIF', false),
 			])
-			->add_tab(__('JPEG'), [
+			->add_tab(__('JPG'), [
 				Field::make('checkbox', 'squidge_jpg_enable', 'Enable JPEG Compression')
 					->set_default_value(true)
 					->set_help_text('Select this box to enable JPEG compression.'),
@@ -146,5 +129,65 @@ class Fields
 					->set_default_value(true)
 					->set_help_text('Select this box to enable AVIF conversion.'),
 			]);
+	}
+
+	/**
+	 * Gets a Carbon health field dependent on if
+	 * it is valid or installed. Classes and
+	 * attributes will be set accordingly.
+	 *
+	 * @param $name
+	 * @param $templateName
+	 * @param $valid
+	 * @return Field\Field
+	 * @since 0.1.0
+	 * @date 24/11/2021
+	 */
+	private function get_health_field($name, $templateName, $niceName, $valid)
+	{
+		$tpl = $this->get_health_text('health' . DIRECTORY_SEPARATOR . $templateName, $valid);
+
+		$field = Field::make('text', 'squidge_' . $name . '_status', $niceName . ' Status')
+			->set_attribute('readOnly')
+			->set_attribute('placeholder', 'Inactive')
+			->set_classes('squidge squidge-disabled squidge-health squidge-health-inactive')
+			->set_help_text($tpl);
+
+		if ($valid) {
+			$field->set_attribute('placeholder', 'Active')
+				->set_classes('squidge squidge-disabled squidge-health squidge-health-active');
+		}
+
+		return $field;
+	}
+
+	/**
+	 * Renders the health template.
+	 *
+	 * @param $templateName
+	 * @param $valid
+	 * @return false|string
+	 */
+	private function get_health_text($templateName, $valid)
+	{
+		global $health_valid;
+		$health_valid = $valid;
+		return $this->render_template($templateName);
+	}
+
+	/**
+	 * Renders a Squidge template in the /templates
+	 * folder.
+	 *
+	 * @param $name
+	 * @return false|string
+	 * @since 0.1.0
+	 * @date 24/11/2021
+	 */
+	private function render_template($name)
+	{
+		ob_start();
+		include SQUIDGE_TEMPLATE_PATH . DIRECTORY_SEPARATOR . $name;
+		return ob_get_clean();
 	}
 }
