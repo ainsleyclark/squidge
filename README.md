@@ -4,40 +4,40 @@
 
 # Squidge
 
-Is **FREE** WordpPress Plugin built for developers in mind to compress and convert images using cwebp, jpegoptim,
-optipng and libavif. It's **extremley** simple to use and is designed to increase PSI and boost rankings.
+Is **FREE** WordpPress Plugin built for developers in mind to compress and convert images using `jpegoptim`,
+`optipng`, `cwebp`, and `libavif`. It's **extremley** simple to use and is designed to increase PSI and boost rankings.
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ainsleyclark/wp-squidge/blob/master/LICENSE)
 [![GNU General Public License 3.0](https://img.shields.io/github/license/ainsleyclark/wp-squidge.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-## Description
+## Why?
+
+Image compression in WordPress can be costly, confusing and sometimes just simply don't work. We have aimed to simplify
+the process by requiring the developer to install the required packages.
+
+
+## What does Squidge do?
+
+- Compresses JPG images using `jpegoptim`.
+- Compresses PNG images using `optipng`.
+- Converts JPG and PNG images to `.webp` files using `cwebp` with the appended extension  e.g. `image.jpg.webp`.
+- Converts JPG and PNG images to `.avif` files using `libavif` with the appended extension  e.g. `image.jpg.avif`.
 
 ## Installation
 
-1. Upload the
-
-## Usage
-
-
-
-
-
-
-
-## Settings
-
-### JPG
-
-
-
+1. Upload the `wp-squidge` plugin to your `/wp-content/plugins/` directory.
+2. Activate the plugin through the "Plugins" menu in WordPress.
+3. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
+run the commands listed dependent on your operating system.
+4. Check the individual optimisation tabs and adjust settings accordingly.
+5. Done!
 
 ## Render Images
 
 To render images in templates, you can either set up nginx or apache rules to serve images
 
 ```html
-
 <picture>
 	<!-- Loads if AVIF is supported -->
 	<source srcset="img/image.jpg.avif" type="image/avif">
@@ -70,19 +70,27 @@ Windows, Linux, & Mac OSX.
 
 **How are JPGs optimized?**
 
-`jpegoptim --strip-all --overwrite --max={{ quality }} input-file.jpg`.
+```bash
+jpegoptim --strip-all --overwrite --max={{ quality }} input-file.jpg
+```
 
 **How are PNGs optimized?**
 
-`optipng -clobber -strip all -o {{ optimization }} input-file.jpg`.
+```bash
+optipng -clobber -strip all -o {{ optimization }} input-file.jpg
+````
 
 **How are images converted to webp files?**
 
-`cwebp -q {{ quality }} input-file.jpg -o input-file.jpg.webp`.
+```bash
+cwebp -q {{ quality }} input-file.jpg -o input-file.jpg.webp
+```
 
 **How are images converted to avif files?**
 
-`avifenc --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim input-file.jpg input-file.jpg.avif`.
+```bash
+avifenc --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim input-file.jpg input-file.jpg.avif
+```
 
 ## CLI
 
