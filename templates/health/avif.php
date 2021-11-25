@@ -25,10 +25,7 @@ global $health_valid;
 	<!-- Linux -->
 	<div>
 		<h3>Linux:</h3>
-		<code>
-			sudo apt-get install libavif
-		</code>
-		<p>For more information visit <a href="https://www.interserver.net/tips/kb/install-and-serve-webp-images-on-ubuntu/" target="_blank">here</a>.</p>
+		<p>Dependant on your distro, you may need to build from source. Please visit <a href="https://aomediacodec.github.io/av1-avif/" target="_blank">here</a> for mor information.</p>
 	</div>
 	<!-- Mac -->
 	<div>
