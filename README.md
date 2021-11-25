@@ -19,6 +19,7 @@ the process by requiring the developer to install the required packages.
 - **IT'S FREE**
 - Unlimited file size, no limits.
 - Optimised for your site to rank.
+- CLI to regenerate all of your media files.
 - Helper functions to output images in templates.
 - Uses the native `cwebp` and `libavif` libraries.
 
