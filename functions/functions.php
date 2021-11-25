@@ -13,45 +13,48 @@
  *
  */
 
+use Squidge\Package\File;
+
 if (!function_exists('squidge_image')) {
-	function squidge_image($image_id, $class = '', $lazy = false) {
 
-		if (empty($image)) {
-			return "";
+	/**
+	 * Returns a <picture> element with source media for the standard file passed
+	 * (such as a JPG), the .avif file, the .webp file (if to exist on the file system).
+	 *
+	 * Appropriate <source> elements for image sizes with max widths.
+	 * Finally, the main be outputted with alt and title text.
+	 *
+	 * If lazy is true, the data-src or data-srcset will be appended.
+	 * If a class is set, the class will be outputted on the <picture> element.
+	 *
+	 * @param $image_id
+	 * @param string $class
+	 * @param false $lazy
+	 * @return string
+	 */
+	function squidge_image($image_id, $class = '', $lazy = false)
+	{
+		$image = wp_get_attachment_metadata($image_id);
+		$image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE);
+		$image_title = get_the_title($image_id);
+
+		$mainImageURL = $image['file'];
+
+		$str = '<picture class="' . $class . '">';
+
+		if (isset($image['sizes'])) {
+			foreach ($image['sizes'] as $size) {
+				$str .= File::avif(dirname($mainImageURL) . '/' . $size['file'], $mainImageURL, $lazy, $size['width']);
+				$str .= File::webp(dirname($mainImageURL) . '/' . $size['file'], $mainImageURL, $lazy, $size['width']);
+				$str .= File::source(dirname($mainImageURL) . '/' . $size['file'], $mainImageURL, $lazy, $size['width']);
+			}
 		}
 
-		if (!$image) {
-			return "";
-		}
+		$str .= File::avif($image['file'], $mainImageURL, $lazy);
+		$str .= File::webp($image['file'], $mainImageURL, $lazy);
+		$str .= File::image($mainImageURL, $image_alt, $image_title, $lazy);
 
-		$str = '';
-		$lazyStr = '';
-		$origClass = $class;
-
-		if ($lazy) {
-			$class = trim($class . ' lazy', ' ');
-			$lazyStr = 'data-';
-		}
-
-		if (!in_array('sizes', $image) || $image['mime_type'] === "image/svg+xml") {
-			return '<img ' . $lazyStr . ' src="' . $image['url'] . '" class="' . $class . '" alt="' . $image['alt'] . '">';
-		}
-
-		$sizes = $image['sizes'];
-
-		if ($sizes['mobile']) {
-			$str .= '<source media="(max-width: 767px)" ' . $lazyStr . 'srcset="' . $sizes['mobile'] . '">';
-		}
-
-		if ($sizes['tablet']) {
-			$str .= '<source media="(max-width: 1024px)" ' . $lazyStr . 'srcset="' . $sizes['tablet'] . '">';
-		}
-
-		$str .= '<img class="' . $class . '"' . $lazyStr . 'src="' . $image['url'] . '"  alt="' . $image['alt'] . '">';
-
-		if ($lazy) {
-			$str .= '<noscript><img class="' . $origClass . '" src="' . $image['url'] . '"  alt="' . $image['alt'] . '"></noscript>';
-		}
+		$str .= '</picture>';
 
 		return $str;
 	}

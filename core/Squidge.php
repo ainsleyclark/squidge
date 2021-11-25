@@ -72,6 +72,9 @@ final class Squidge
 		$this->define('SQUIDGE_BASENAME', plugin_basename(dirname($base)));
 		$this->define('SQUIDGE_TEMPLATE_PATH', dirname($base) . DIRECTORY_SEPARATOR . 'templates');
 		$this->define('SQUIDGE_VERSION', $this->version);
+		$uploadData = wp_upload_dir();
+		$this->define('SQUIDGE_UPLOAD_DIR', $uploadData['basedir']);
+		$this->define('SQUIDGE_UPLOAD_URL', $uploadData['baseurl']);
 		new Admin\Fields();
 		new Admin\Upload();
 	}

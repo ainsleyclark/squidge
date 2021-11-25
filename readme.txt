@@ -48,6 +48,21 @@ run the commands listed dependent on your operating system.
 5. Check the individual optimisation tabs and adjust settings accordingly.
 6. Done!
 
+== Render Images ==
+
+To render images in templates, you can either set up nginx or apache rules to serve images
+
+```html
+<picture>
+	<!-- Loads if AVIF is supported -->
+	<source srcset="img/image.jpg.avif" type="image/avif">
+	<!-- Loads if WebP is supported -->
+	<source srcset="img/image.jpg.webp" type="image/webp">
+	<!-- Default -->
+	<img src="img/image.jpg" alt="Alt Text!">
+</picture>
+```
+
 == Frequently Asked Questions ==
 
 = Does the plugin replace existing images? =
