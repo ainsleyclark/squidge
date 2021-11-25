@@ -106,3 +106,8 @@ wp squidge run --jpeg=false --quality=80 --optimization=o3
 | optimization      | `02`                   | `o1` to `o7`             | Optimisation of PNG images.
 
 ## Road Map
+
+- Add `SVGO` to optimise SVG images.
+- Update meta data when images are converted or compressed.
+- Output compression info in the Media Library.
+- Create unit tests.
