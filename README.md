@@ -4,12 +4,13 @@
 
 # Squidge
 
-Is **FREE** WordpPress Plugin built for developers in mind to compress and convert images using `jpegoptim`,
+Is **FREE** WordpPress Plugin built for developers in mind compressing and convert images using `jpegoptim`,
 `optipng`, `cwebp`, and `libavif`. It's **extremley** simple to use and is designed to increase PSI and boost rankings.
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ainsleyclark/wp-squidge/blob/master/LICENSE)
 [![GNU General Public License 3.0](https://img.shields.io/github/license/ainsleyclark/wp-squidge.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=PQG5A34KWUXRJ)
 
 ## Why?
 
@@ -38,12 +39,13 @@ Converts JPG and PNG images to `.avif` files using `libavif` with the appended e
 
 ## Installation
 
-1. Upload the `wp-squidge` plugin to your `/wp-content/plugins/` directory.
-2. Activate the plugin through the "Plugins" menu in WordPress.
-3. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
+1. Go to the [releases](https://github.com/ainsleyclark/wp-squidge/releases) section and download the plugin.
+2. Upload the `wp-squidge` plugin to your `/wp-content/plugins/` directory.
+3. Activate the plugin through the "Plugins" menu in WordPress.
+4. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
 run the commands listed dependent on your operating system.
-4. Check the individual optimisation tabs and adjust settings accordingly.
-5. Done!
+5. Check the individual optimisation tabs and adjust settings accordingly.
+6. Done!
 
 ## Render Images
 

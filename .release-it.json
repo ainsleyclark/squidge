@@ -1,15 +1,19 @@
 {
   "git": {
+    "changelog": null,
     "commit": true,
     "commitMessage": "Release ${version}",
     "commitArgs": [],
     "tag": true,
     "tagName": null,
     "tagMatch": null,
-    "tagAnnotation": "Release ${version}"
+    "tagAnnotation": "Release ${version}",
+    "releaseNotes": null
   },
   "github": {
-    "release": true
+    "release": false,
+    "releaseName": "Release ${version}",
+    "preRelease": true
   },
   "npm": {
     "publish": false
