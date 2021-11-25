@@ -1,6 +1,6 @@
 {
   "name": "wp-squidge",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "main": "index.js",
   "author": "Ainsley Clark",
   "scripts": {
