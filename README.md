@@ -16,13 +16,23 @@ Is **FREE** WordpPress Plugin built for developers in mind to compress and conve
 Image compression in WordPress can be costly, confusing and sometimes just simply don't work. We have aimed to simplify
 the process by requiring the developer to install the required packages.
 
+- **IT'S FREE**
+- Unlimited file size, no limits.
+- Optimised for your site to rank.
+- Helper functions to output images in templates.
+- Uses the native `cwebp` and `libavif` libraries.
 
 ## What does Squidge do?
 
-- Compresses JPG images using `jpegoptim`.
-- Compresses PNG images using `optipng`.
-- Converts JPG and PNG images to `.webp` files using `cwebp` with the appended extension  e.g. `image.jpg.webp`.
-- Converts JPG and PNG images to `.avif` files using `libavif` with the appended extension  e.g. `image.jpg.avif`.
+Squidge compresses and converts image files when the user has uploaded a file to WordPress.
+
+Compresses JPG images using `jpegoptim`.
+
+Compresses PNG images using `optipng`.
+
+Converts JPG and PNG images to `.webp` files using `cwebp` with the appended extension  e.g. `image.jpg.webp`.
+
+Converts JPG and PNG images to `.avif` files using `libavif` with the appended extension  e.g. `image.jpg.avif`.
 
 ## Installation
 
@@ -60,33 +70,33 @@ To render images in templates, you can either set up nginx or apache rules to se
 
 ## FAQs
 
-**Does the plugin replace existing images?**
+###Does the plugin replace existing images?
 
 Yes
 
-**What are the supported operating systems?**
+### What are the supported operating systems?
 
 Windows, Linux, & Mac OSX.
 
-**How are JPGs optimized?**
+### How are JPGs optimized?
 
 ```bash
 jpegoptim --strip-all --overwrite --max={{ quality }} input-file.jpg
 ```
 
-**How are PNGs optimized?**
+### How are PNGs optimized?
 
 ```bash
 optipng -clobber -strip all -o {{ optimization }} input-file.jpg
 ````
 
-**How are images converted to webp files?**
+### How are images converted to webp files?
 
 ```bash
 cwebp -q {{ quality }} input-file.jpg -o input-file.jpg.webp
 ```
 
-**How are images converted to avif files?**
+### How are images converted to avif files?
 
 ```bash
 avifenc --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim input-file.jpg input-file.jpg.avif
