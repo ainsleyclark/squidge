@@ -17,6 +17,7 @@ optipng and libavif. It's **extremley** simple to use and is designed to increas
 
 ## Settings
 
+
 ## Render Images
 
 To render images in templates, you can either set up nginx or apache rules to serve images
