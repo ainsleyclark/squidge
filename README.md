@@ -71,7 +71,7 @@ To render images in templates, you can either set up nginx or apache rules to se
 
 ## FAQs
 
-###Does the plugin replace existing images?
+### Does the plugin replace existing images?
 
 Yes
 
