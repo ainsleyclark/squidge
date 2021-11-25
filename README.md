@@ -13,9 +13,23 @@ optipng and libavif. It's **extremley** simple to use and is designed to increas
 
 ## Description
 
+## Installation
+
+1. Upload the
+
 ## Usage
 
+
+
+
+
+
+
 ## Settings
+
+### JPG
+
+
 
 
 ## Render Images
@@ -44,6 +58,31 @@ To render images in templates, you can either set up nginx or apache rules to se
 
 ![Squidge Example Compression Tab](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-tab.png)
 
+## FAQs
+
+**Does the plugin replace existing images?**
+
+Yes
+
+**What are the supported operating systems?**
+
+Windows, Linux, & Mac OSX.
+
+**How are JPGs optimized?**
+
+`jpegoptim --strip-all --overwrite --max={{ quality }} input-file.jpg`.
+
+**How are PNGs optimized?**
+
+`optipng -clobber -strip all -o {{ optimization }} input-file.jpg`.
+
+**How are images converted to webp files?**
+
+`cwebp -q {{ quality }} input-file.jpg -o input-file.jpg.webp`.
+
+**How are images converted to avif files?**
+
+`avifenc --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim input-file.jpg input-file.jpg.avif`.
 
 ## CLI
 
@@ -82,13 +121,13 @@ JPG/PNG's and convert them to the `.webp` and `.avif` file formats.
 
 By default all optimisation methods are ran, but you can disable them using the arguments below.
 
-**Simple Example:**
+**Simple example:**
 
 ```bash
 wp squidge run
 ```
 
-**With Arguments**
+**With example arguments**
 
 ```bash
 wp squidge run --jpeg=false --quality=80 --optimization=o3
@@ -108,6 +147,7 @@ wp squidge run --jpeg=false --quality=80 --optimization=o3
 ## Road Map
 
 - Add `SVGO` to optimise SVG images.
+- More arguments passed to each service.
 - Update meta data when images are converted or compressed.
 - Output compression info in the Media Library.
 - Create unit tests.

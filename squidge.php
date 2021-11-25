@@ -31,3 +31,8 @@ if (file_exists(__DIR__ . '/cli/commands.php')) {
 	require(__DIR__ . '/cli/commands.php');
 }
 
+// Require Functions.
+if (file_exists(__DIR__ . '/functions/functions.php')) {
+	require(__DIR__ . '/functions/functions.php');
+}
+
