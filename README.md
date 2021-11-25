@@ -14,7 +14,8 @@ Is **FREE** WordpPress Plugin built for developers in mind to compress and conve
 ## Why?
 
 Image compression in WordPress can be costly, confusing and sometimes just simply don't work. We have aimed to simplify
-the process by requiring the developer to install the required packages.
+the process by requiring the developer to install the required package on the operating system and Squidge does the
+hard work for you.
 
 - **IT'S FREE**
 - Unlimited file size, no limits.

@@ -1,0 +1,12 @@
+{
+  "name": "wp-squidge",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Ainsley Clark",
+  "scripts": {
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "release-it": "^14.11.8"
+  }
+}

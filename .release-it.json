@@ -1,0 +1,17 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "Release ${version}",
+    "commitArgs": [],
+    "tag": true,
+    "tagName": null,
+    "tagMatch": null,
+    "tagAnnotation": "Release ${version}"
+  },
+  "github": {
+    "release": true
+  },
+  "npm": {
+    "publish": false
+  }
+}
