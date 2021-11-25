@@ -81,7 +81,7 @@ class Fields
 				$this->get_health_field('jpg', 'jpg.php', 'JPG', JPG::installed()),
 				$this->get_health_field('png', 'png.php', 'PNG', PNG::installed()),
 				$this->get_health_field('webp', 'webp.php', 'WebP', WebP::installed()),
-				$this->get_health_field('avif', 'avif.php', 'AVIF', false),
+				$this->get_health_field('avif', 'avif.php', 'AVIF', AVIF::installed()),
 			])
 			->add_tab(__('JPG'), [
 				Field::make('checkbox', 'squidge_jpg_enable', 'Enable JPEG Compression')
@@ -97,7 +97,7 @@ class Fields
 			->add_tab(__('PNG'), [
 				Field::make('checkbox', 'squidge_png_enable', 'Enable PNG Compression')
 					->set_default_value(true)
-					->set_help_text('Select this box to enable JPEG compression.'),
+					->set_help_text('Select this box to enable PNG compression.'),
 				Field::make('select', 'squidge_png_quality', 'Opti PNG Level')
 					->add_options([
 						'0' => 'o1',
@@ -111,7 +111,7 @@ class Fields
 					])
 					->set_default_value('3')
 					->set_width(100)
-					->set_help_text('Pick a color')
+					->set_help_text('Enter the optimisation level of the PNG compression. The default is o2 with o7 being the fastest and o1 being the slowest.')
 			])
 			->add_tab(__('WebP'), [
 				Field::make('checkbox', 'squidge_webp_enable', 'Enable WebP Conversion')

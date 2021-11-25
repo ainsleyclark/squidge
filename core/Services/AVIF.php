@@ -45,7 +45,7 @@ class AVIF extends Service implements Convertor
 		if ($mime != Mimes::PNG && $mime != Mimes::JPG) {
 			return;
 		}
-		exec(sprintf('%s --min 0 --max 63 -speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s 2> /dev/null', self::cmd_name(), $filepath, $filepath . self::extension()));
+		exec(sprintf('%s --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s 2> /dev/null', self::cmd_name(), $filepath, $filepath . self::extension()));
 		Logger::info("Successfully converted to Avif file: " . $filepath . self::extension());
 	}
 

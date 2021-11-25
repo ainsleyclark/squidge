@@ -41,7 +41,7 @@ class Squidge_CLI extends WP_CLI_Command
 	{
 		$this->print_health("jpegoptim", JPG::installed());
 		$this->print_health("optipng", PNG::installed());
-		$this->print_health("cwebp", false);
+		$this->print_health("cwebp", WebP::installed());
 		$this->print_health("avifenc", AVIF::installed());
 	}
 
@@ -53,11 +53,12 @@ class Squidge_CLI extends WP_CLI_Command
 	 * converted to .webp and .avif file formats.
 	 *
 	 * Args:
-	 *    - jpeg=false : To disable JPG compression.
-	 *    - png=false : To disable PNG compression.
-	 *    - webp=false : To disable WebP conversion.
-	 *    - avif=false : To disable AVIF conversion.
-	 *  -
+	 *    - jpeg=false  	 To disable JPG compression.
+	 *    - png=false   	 To disable PNG compression.
+	 *    - webp=false  	 To disable WebP conversion.
+	 *    - avif=false       To disable AVIF conversion.
+	 *    - quality=80   	 The quality of compression
+	 *    - optimization=02  Optimization of PNG images
 	 *
 	 * @param $args
 	 * @param $assoc_args
