@@ -50,16 +50,42 @@ run the commands listed dependent on your operating system.
 
 == Render Images ==
 
-To render images in templates, you can either set up nginx or apache rules to serve images
+To render images in templates, you can either set up nginx or apache rules to serve images dynamically or used the
+`squidge_image` helper function. This dynamically checks if an `.avif` or `.webp` file is available on the file system
+and returns the output.
 
+### Function
+```php
+/**
+ * Returns a <picture> element with source media for the standard file passed
+ * (such as a JPG), the .avif file, the .webp file (if to exist on the file system).
+ *
+ * Appropriate <source> elements for image sizes with max widths.
+ * Finally, the main be outputted with alt and title text.
+ *
+ * - If lazy is true, the data-src or data-srcset will be appended.
+ * - If a class is set, the class will be outputted on the <picture> element.
+ *
+ * @param $image_id
+ * @param string $class
+ * @param false $lazy
+ * @return string
+ */
+function squidge_image($image_id, $class = '', $lazy = false)
+```
+
+### Output
 ```html
-<picture>
-	<!-- Loads if AVIF is supported -->
-	<source srcset="img/image.jpg.avif" type="image/avif">
-	<!-- Loads if WebP is supported -->
-	<source srcset="img/image.jpg.webp" type="image/webp">
+<picture class="picture">
+	<!-- Loads if AVIF is supported and the window is smaller than 400px wide -->
+	<source media="(max-width: 400px)" srcset="{{ upload_url }}/Sample-JPG.jpg.avif" type="image/avif">
+	<source media="(max-width: 400px)" srcset="{{ upload_url }}/Sample-JPG.jpg.webp" type="image/webp">
+	<source media="(max-width: 400px)" srcset="{{ upload_url }}/Sample-JPG.jpg">
+	<!-- AVIF & Wep Initial Sizes -->
+	<source srcset="{{ upload_url }}/Sample-JPG.jpg.avif" type="image/avif">
+	<source srcset="{{ upload_url }}/Sample-JPG.jpg.webp" type="image/webp">
 	<!-- Default -->
-	<img src="img/image.jpg" alt="Alt Text!">
+	<img src="{{ upload_url }}/Sample-JPG.jpg" alt="Alt text" title="Sample JPG">
 </picture>
 ```
 
