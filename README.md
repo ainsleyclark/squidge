@@ -15,6 +15,8 @@ optipng and libavif. It's **extremley** simple to use and is designed to increas
 
 ## Usage
 
+## Settings
+
 ## Render Images
 
 To render images in templates, you can either set up nginx or apache rules to serve images
@@ -102,8 +104,8 @@ wp squidge run --jpeg=false --quality=80 --optimization=o3
 | png               | `true`                   | `true`/`false`           | If PNG compression should run.
 | webp              | `true`                   | `true`/`false`           | If WebP conversion should run.
 | avif              | `true`                   | `true`/`false`           | If AVIF conversion should run.
-| quality           | `80`                   | `0` to `100`             | Compression quality of the images.
-| optimization      | `02`                   | `o1` to `o7`             | Optimisation of PNG images.
+| quality           | `80`                     | `0` to `100`             | Compression quality of the images.
+| optimization      | `02`                     | `o1` to `o7`             | Optimisation of PNG images.
 
 ## Road Map
 
