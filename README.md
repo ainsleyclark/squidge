@@ -39,13 +39,13 @@ To render images in templates, you can either set up nginx or apache rules to se
 ### Plugin settings page
 
 <p align="left">
-    <img alt="logo" src="assets/images/screenshot-1.png" width="100%">
+    <img alt="Squidge Settings Page" src="assets/images/screenshot-1.png" width="100%">
 </p>
 
 ### Example compression tab
 
 <p align="left">
-    <img alt="logo" src="assets/images/screenshot-2.png" width="100%">
+    <img alt="Squidge Example Compression Tab" src="assets/images/screenshot-2.png" width="100%">
 </p>
 
 ## CLI
