@@ -8,13 +8,17 @@
  *
  * @package     Squidge
  * @version     0.1.0
- * @category    Admin
+ * @category    CLI
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
  */
 
 if (!defined('WP_CLI')) {
 	return; // Exit, WP CLI is not defined.
+}
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
 }
 
 use Squidge\Squidge;

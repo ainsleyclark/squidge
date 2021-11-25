@@ -78,14 +78,14 @@ function squidge_image($image_id, $class = '', $lazy = false)
 ```html
 <picture class="picture">
 	<!-- Loads if AVIF is supported and the window is smaller than 400px wide -->
-	<source media="(max-width: 400px)" srcset="{{ upload_url }}/Sample-JPG.jpg.avif" type="image/avif">
-	<source media="(max-width: 400px)" srcset="{{ upload_url }}/Sample-JPG.jpg.webp" type="image/webp">
-	<source media="(max-width: 400px)" srcset="{{ upload_url }}/Sample-JPG.jpg">
+	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg.avif" type="image/avif">
+	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg.webp" type="image/webp">
+	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg">
 	<!-- AVIF & Wep Initial Sizes -->
-	<source srcset="{{ upload_url }}/Sample-JPG.jpg.avif" type="image/avif">
-	<source srcset="{{ upload_url }}/Sample-JPG.jpg.webp" type="image/webp">
+	<source srcset="/Sample-JPG.jpg.avif" type="image/avif">
+	<source srcset="/Sample-JPG.jpg.webp" type="image/webp">
 	<!-- Default -->
-	<img src="{{ upload_url }}/Sample-JPG.jpg" alt="Alt text" title="Sample JPG">
+	<img src="/Sample-JPG.jpg" alt="Alt text" title="Sample JPG">
 </picture>
 ```
 

@@ -14,8 +14,15 @@
  *
  */
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
+<!-- =====================
+    Info
+    ===================== -->
 <h1>Welcome to Squidge</h1>
 <p>Welcome to the simpliest, <b>free</b> image optimisation platform for Wordpress.</p>
 <p>

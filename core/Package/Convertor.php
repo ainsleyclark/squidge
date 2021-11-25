@@ -8,12 +8,17 @@
  *
  * @package     Squidge
  * @version     0.1.0
- * @category    Package
+ * @author      Ainsley Clark
+ * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
  */
 
 namespace Squidge\Package;
+
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
 
 interface Convertor {
 
@@ -22,13 +27,12 @@ interface Convertor {
 	 * mime type and any arguments associated with
 	 * the CLI such as quality.
 	 *
-	 * @date 24/11/2021
-	 * @since 0.1.0
-	 *
 	 * @param $filepath
 	 * @param $mime
 	 * @param $args
 	 * @return mixed
+	 * @date 24/11/2021
+	 * @since 0.1.0
 	 */
 	static function convert($filepath, $mime, $args);
 

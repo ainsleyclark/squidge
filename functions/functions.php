@@ -13,6 +13,10 @@
  *
  */
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
 use Squidge\Package\File;
 
 if (!function_exists('squidge_image')) {

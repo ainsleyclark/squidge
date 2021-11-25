@@ -15,8 +15,15 @@
 
 global $health_valid;
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
+<!-- =====================
+	JPG
+	===================== -->
 <?php if ($health_valid) : ?>
 	<h4>jpegoptim library installed.</h4>
 <?php else : ?>

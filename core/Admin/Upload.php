@@ -10,6 +10,7 @@
  * @package     Squidge
  * @version     0.1.0
  * @author      Ainsley Clark
+ * @category    Admin
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
  */

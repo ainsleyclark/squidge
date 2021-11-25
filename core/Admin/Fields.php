@@ -4,18 +4,19 @@
  * Fields
  *
  * Register Carbon Field options for the
- * admin part of the section.
+ * admin part of the plugin.
  *
  * @package     Squidge
  * @version     0.1.0
  * @author      Ainsley Clark
- * @category    Package
+ * @category    Class
  * @repo        https://github.com/ainsleyclark/wp-squidge
  *
  */
 
 namespace Squidge\Admin;
 
+use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use Squidge\Services\AVIF;
@@ -52,7 +53,7 @@ class Fields
 	public function load_carbon_fields()
 	{
 		define('\Carbon_Fields\URL', SQUIDGE_URL . 'vendor/htmlburger/carbon-fields/');
-		\Carbon_Fields\Carbon_Fields::boot();
+		Carbon_Fields::boot();
 	}
 
 	/**

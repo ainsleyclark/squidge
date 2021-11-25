@@ -15,6 +15,10 @@
 
 namespace Squidge\Types;
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
 abstract class Mimes {
 	const PNG = "image/png";
 	const JPG = 'image/jpeg';

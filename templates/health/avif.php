@@ -15,8 +15,15 @@
 
 global $health_valid;
 
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
+<!-- =====================
+	AVIF
+	===================== -->
 <?php if ($health_valid) : ?>
 	<h4>avifenc library installed.</h4>
 <?php else : ?>

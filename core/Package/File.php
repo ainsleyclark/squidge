@@ -16,7 +16,6 @@
 
 namespace Squidge\Package;
 
-use Exception;
 use Squidge\Services\AVIF;
 use Squidge\Services\WebP;
 
