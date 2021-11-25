@@ -35,10 +35,3 @@ if (file_exists(__DIR__ . '/cli/commands.php')) {
 if (file_exists(__DIR__ . '/functions/functions.php')) {
 	require(__DIR__ . '/functions/functions.php');
 }
-
-
-
-
-echo squidge_image(29, 'picture', false);
-
-die();
