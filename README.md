@@ -1,4 +1,4 @@
-<p align="lefty">
+<p align="left">
     <img alt="logo" src="logo.svg" width="40%">
 </p>
 
@@ -16,13 +16,29 @@ It's **extremley** simple to use and is designed to increase PSI and boost ranki
 
 ## Usage
 
+## Screenshots
+
+### Plugin settings page
+
+<p align="left">
+    <img alt="logo" src="assets/images/screenshot-1.png" width="100%">
+</p>
+
+### Example compression tab
+
+<p align="left">
+    <img alt="logo" src="assets/images/screenshot-2.png" width="100%">
+</p>
+
 ## CLI
 
 Squidge includes a built in `WP CLI` to help convert and compress images, you can see the commands below.
 
 ```bash
 wp squidge
+```
 
+```bash
 usage: wp squidge health
    or: wp squidge run
    or: wp squidge version
@@ -55,7 +71,7 @@ wp squidge run
 
 **With Arguments**
 ```bash
-wp squidge run --jpeg=false --quality=80
+wp squidge run --jpeg=false --quality=80 --optimization=o3
 ```
 
 #### Arguments

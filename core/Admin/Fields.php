@@ -44,7 +44,7 @@ class Fields
 	}
 
 	/**
-	 *Load carbon fields and reassigns vendor path.
+	 * Load carbon fields and reassigns vendor path.
 	 *
 	 * @since 0.1.0
 	 * @date 24/11/2021
@@ -57,12 +57,14 @@ class Fields
 
 	/**
 	 * Registers custom admin style.
+	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function styles_and_scripts()
 	{
 		wp_enqueue_style('admin-styles', SQUIDGE_URL . '/assets/admin.css');
 	}
-
 
 	/**
 	 * Registers the admin fields (options).
@@ -138,6 +140,7 @@ class Fields
 	 *
 	 * @param $name
 	 * @param $templateName
+	 * @param $niceName
 	 * @param $valid
 	 * @return Field\Field
 	 * @since 0.1.0
@@ -167,6 +170,8 @@ class Fields
 	 * @param $templateName
 	 * @param $valid
 	 * @return false|string
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	private function get_health_text($templateName, $valid)
 	{

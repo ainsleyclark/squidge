@@ -28,17 +28,25 @@ class Squidge_CLI extends WP_CLI_Command
 
 	/**
 	 * Returns the version number of the plugin.
+	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function version()
 	{
-		Squidge::boot()->version;
+		$this->print_welcome();
+		WP_CLI::log(Squidge::boot()->version);
 	}
 
 	/**
 	 * Prints health status for each service.
+	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function health()
 	{
+		$this->print_welcome();
 		$this->print_health("jpegoptim", JPG::installed());
 		$this->print_health("optipng", PNG::installed());
 		$this->print_health("cwebp", WebP::installed());
@@ -62,10 +70,12 @@ class Squidge_CLI extends WP_CLI_Command
 	 *
 	 * @param $args
 	 * @param $assoc_args
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	public function run($args, $assoc_args)
 	{
-		WP_CLI::line(WP_CLI::colorize('%GWelcome to the Squidge CLI...%n' . PHP_EOL));
+		$this->print_welcome();
 
 		$assoc_args = wp_parse_args(
 			$assoc_args,
@@ -151,10 +161,22 @@ class Squidge_CLI extends WP_CLI_Command
 	}
 
 	/**
+	 * Prints CLI welcome message.
+	 *
+	 * @since 0.1.0
+	 * @date 24/11/2021
+	 */
+	private function print_welcome() {
+		WP_CLI::line(WP_CLI::colorize('%GWelcome to the Squidge CLI...%n' . PHP_EOL));
+	}
+
+	/**
 	 * Prints the health information for a service.
 	 *
 	 * @param $type
 	 * @param $active
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	private function print_health($type, $active)
 	{
