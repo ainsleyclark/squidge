@@ -32,22 +32,42 @@ usage: wp squidge health
 Outputs the current version number of Squidge.
 
 ```bash
- wp squidge version
+wp squidge version
 ```
 
 ### Health
 Checks the correct libraries are installed.
 
 ```bash
- wp squidge health
+wp squidge health
 ```
 
 ### Run
 Compresses and converts all images. This  command will obtain images from the WP media library, compress them if they are JPG/PNG's and convert
 them to the `.webp` and `.avif` file formats.
 
+By default all optimisation methods are ran, but you can disable them using the arguments below.
+
+**Simple Example:**
 ```bash
- wp squidge health
+wp squidge run
 ```
+
+**With Arguments**
+```bash
+wp squidge run --jpeg=false --quality=80
+```
+
+#### Arguments
+
+| Argument          | Default Value            | Accepted Values          | Description       |
+| ----------------- | ------------------------ | ------------------------ | ----------------- |
+| jpg               | `true`                   | `true`/`false`           | If JPG compression should run.
+| png               | `true`                   | `true`/`false`           | If PNG compression should run.
+| webp              | `true`  				   | `true`/`false`           | If WebP conversion should run.
+| avif              | `true`          		   | `true`/`false`           | If AVIF conversion should run.
+| quality           | `80`          		   | `0` to `100`             | Compression quality of the images.
+| optimization      | `02`           	       | `o1` to `o7`             | Optimisation of PNG images.
+
 
 ## Road Map

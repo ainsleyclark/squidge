@@ -53,7 +53,7 @@ class Squidge_CLI extends WP_CLI_Command
 	 * converted to .webp and .avif file formats.
 	 *
 	 * Args:
-	 *    - jpeg=false  	 To disable JPG compression.
+	 *    - jpg=false  	 	 To disable JPG compression.
 	 *    - png=false   	 To disable PNG compression.
 	 *    - webp=false  	 To disable WebP conversion.
 	 *    - avif=false       To disable AVIF conversion.
@@ -72,12 +72,17 @@ class Squidge_CLI extends WP_CLI_Command
 			[
 				'quality'      => 80,
 				'optimization' => 'o2',
-				'jpeg'         => true,
+				'jpg'         => true,
 				'png'          => true,
 				'webp'         => true,
 				'avif'         => true,
 			]
 		);
+
+		$assoc_args['jpg'] = filter_var($assoc_args['jpg'], FILTER_VALIDATE_BOOLEAN);
+		$assoc_args['png'] = filter_var($assoc_args['png'], FILTER_VALIDATE_BOOLEAN);
+		$assoc_args['webp'] = filter_var($assoc_args['webp'], FILTER_VALIDATE_BOOLEAN);
+		$assoc_args['avif'] = filter_var($assoc_args['avif'], FILTER_VALIDATE_BOOLEAN);
 
 		$query_images_args = array(
 			'post_type'      => 'attachment',
@@ -118,7 +123,7 @@ class Squidge_CLI extends WP_CLI_Command
 			}
 
 			// JPG
-			if ($assoc_args['jpeg']) {
+			if ($assoc_args['jpg']) {
 				try {
 					WP_CLI::log('JPG Compression...');
 					JPG::process($id, $image_args);
@@ -139,6 +144,8 @@ class Squidge_CLI extends WP_CLI_Command
 
 			WP_CLI::success("Processed image: " . $image->post_title . PHP_EOL);
 		}
+
+		wp_reset_postdata();
 
 		WP_CLI::success('Successfully processed images.');
 	}
