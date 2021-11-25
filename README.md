@@ -38,11 +38,11 @@ To render images in templates, you can either set up nginx or apache rules to se
 
 ### Plugin settings page
 
-![Squidge Settings Page](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-1.png)
+![Squidge Settings Page](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-home.png)
 
 ### Example compression tab
 
-![Squidge Example Compression Tab](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-2.png)
+![Squidge Example Compression Tab](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-tab.png)
 
 
 ## CLI
