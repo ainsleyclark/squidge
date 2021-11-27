@@ -16,7 +16,10 @@
   "github": {
     "release": false,
     "releaseName": "Release ${version}",
-    "preRelease": true
+    "preRelease": true,
+    "assets": [
+      "dist/squidge-${version}.zip"
+    ]
   },
   "npm": {
     "publish": false
