@@ -1,5 +1,5 @@
 <p align="left">
-    <img alt="logo" src="logo.svg" width="40%">
+    <img alt="logo" src="images/icon.svg" width="40%">
 </p>
 
 # Squidge
@@ -8,8 +8,7 @@ Is **FREE** WordpPress Plugin built for developers in mind compressing and conve
 `optipng`, `cwebp`, and `libavif`. It's **extremley** simple to use and is designed to increase PSI and boost rankings.
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ainsleyclark/wp-squidge/blob/master/LICENSE)
-[![GNU General Public License 3.0](https://img.shields.io/github/license/ainsleyclark/wp-squidge.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![GNU General Public License 3.0](https://img.shields.io/github/license/ainsleyclark/squidge.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=PQG5A34KWUXRJ)
 
 ## Why?
@@ -39,7 +38,7 @@ Converts JPG and PNG images to `.avif` files using `libavif` with the appended e
 
 ## Installation
 
-1. Go to the [releases](https://github.com/ainsleyclark/wp-squidge/releases) section and download the plugin.
+1. Go to the [releases](https://github.com/ainsleyclark/squidge/releases) section and download the plugin.
 2. Upload the `wp-squidge` plugin to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the "Plugins" menu in WordPress.
 4. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
@@ -77,14 +76,14 @@ function squidge_image($image_id, $class = '', $lazy = false)
 ```html
 <picture class="picture">
 	<!-- Loads if AVIF is supported and the window is smaller than 400px wide -->
-	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg.avif" type="image/avif">
-	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg.webp" type="image/webp">
-	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg">
+	<source media="(max-width: 400px)" srcset="/sample-image.jpg.avif" type="image/avif">
+	<source media="(max-width: 400px)" srcset="/sample-image.jpg.webp" type="image/webp">
+	<source media="(max-width: 400px)" srcset="/sample-image.jpg">
 	<!-- AVIF & Wep Initial Sizes -->
-	<source srcset="/Sample-JPG.jpg.avif" type="image/avif">
-	<source srcset="/Sample-JPG.jpg.webp" type="image/webp">
+	<source srcset="/sample-image.jpg.avif" type="image/avif">
+	<source srcset="/sample-image.jpg.webp" type="image/webp">
 	<!-- Default -->
-	<img src="/Sample-JPG.jpg" alt="Alt text" title="Sample JPG">
+	<img src="/sample-image.jpg" alt="Alt text" title="Sample JPG">
 </picture>
 ```
 
@@ -92,11 +91,11 @@ function squidge_image($image_id, $class = '', $lazy = false)
 
 ### Plugin settings page
 
-![Squidge Settings Page](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-home.png)
+![Squidge Settings Page](https://github.com/ainsleyclark/squidge/blob/master/assets/images/screenshot-1.png)
 
 ### Example compression tab
 
-![Squidge Example Compression Tab](https://github.com/ainsleyclark/wp-squidge/blob/master/assets/images/screenshot-tab.png)
+![Squidge Example Compression Tab](https://github.com/ainsleyclark/squidge/blob/master/assets/images/screenshot-2.png)
 
 ## FAQs
 

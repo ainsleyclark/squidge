@@ -41,7 +41,7 @@ Converts JPG and PNG images to `.avif` files using `libavif` with the appended e
 
 == Installation ==
 
-1. Go to the [releases](https://github.com/ainsleyclark/wp-squidge/releases) section and download the plugin.
+1. Go to the [releases](https://github.com/ainsleyclark/squidge/releases) section and download the plugin.
 2. Upload the `wp-squidge` plugin to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the "Plugins" menu in WordPress.
 4. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
@@ -79,14 +79,14 @@ function squidge_image($image_id, $class = '', $lazy = false)
 ```html
 <picture class="picture">
 	<!-- Loads if AVIF is supported and the window is smaller than 400px wide -->
-	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg.avif" type="image/avif">
-	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg.webp" type="image/webp">
-	<source media="(max-width: 400px)" srcset="/Sample-JPG.jpg">
+	<source media="(max-width: 400px)" srcset="/sample-image.jpg.avif" type="image/avif">
+	<source media="(max-width: 400px)" srcset="/sample-image.jpg.webp" type="image/webp">
+	<source media="(max-width: 400px)" srcset="/sample-image.jpg">
 	<!-- AVIF & Wep Initial Sizes -->
-	<source srcset="/Sample-JPG.jpg.avif" type="image/avif">
-	<source srcset="/Sample-JPG.jpg.webp" type="image/webp">
+	<source srcset="/sample-image.jpg.avif" type="image/avif">
+	<source srcset="/sample-image.jpg.webp" type="image/webp">
 	<!-- Default -->
-	<img src="/Sample-JPG.jpg" alt="Alt text" title="Sample JPG">
+	<img src="/sample-image.jpg" alt="Alt text" title="Sample JPG">
 </picture>
 ```
 
