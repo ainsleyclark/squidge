@@ -6,7 +6,7 @@
  * Helper template functions.
  *
  * @package     Squidge
- * @version     0.1.0
+ * @version     0.1.1
  * @author      Ainsley Clark
  * @category    Functions
  * @repo        https://github.com/ainsleyclark/wp-squidge

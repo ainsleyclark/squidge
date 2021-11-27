@@ -7,7 +7,7 @@
  * Author:          Ainsley Clark
  * Author URI:      https://github.com/ainsleyclark
  * Text Domain:     wp-squidge
- * Version:         0.1.0
+ * Version:         0.1.1
  * License:         GNU
  *
  * @package         Squidge
