@@ -91,11 +91,11 @@ function squidge_image($image_id, $class = '', $lazy = false)
 
 ### Plugin settings page
 
-![Squidge Settings Page](https://github.com/ainsleyclark/squidge/blob/master/assets/images/screenshot-1.png)
+![Squidge Settings Page](https://github.com/ainsleyclark/squidge/blob/master/assets/screenshot-1.png)
 
 ### Example compression tab
 
-![Squidge Example Compression Tab](https://github.com/ainsleyclark/squidge/blob/master/assets/images/screenshot-2.png)
+![Squidge Example Compression Tab](https://github.com/ainsleyclark/squidge/blob/master/assets/screenshot-2.png)
 
 ## FAQs
 
