@@ -1,7 +1,4 @@
 {
-  "hooks": {
-    "before:init": ["wp dist-archive . ./squidge/dist/squidge-${version}.zip --create-target-dir"]
-  },
   "git": {
     "changelog": null,
     "commit": true,
@@ -14,12 +11,9 @@
     "releaseNotes": null
   },
   "github": {
-    "release": true,
+    "release": false,
     "releaseName": "Release ${version}",
-    "preRelease": false,
-    "assets": [
-      "dist/squidge-${version}.zip"
-    ]
+    "preRelease": true
   },
   "npm": {
     "publish": false
