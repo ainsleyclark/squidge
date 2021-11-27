@@ -41,3 +41,4 @@ node_modules
 *.tar.gz
 *.zip
 .release-it.json
+dist

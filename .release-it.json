@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "before:github:release": "wp dist archive ."
+    "before:github:release": "wp dist-archive . ./squidge/dist/squidge-${version}.zip --create-target-dir"
   },
   "git": {
     "changelog": null,
