@@ -1,8 +1,9 @@
 === Squidge ===
 Contributors: ainsleyclark
 Donate link: https://www.paypal.com/donate?hosted_button_id=PQG5A34KWUXRJ
-Tags: image, compression, plugin, image compression
-Requires at least: 4.5
+Tags: image, compression, plugin, image compression, webp, lazy load, optimization, seo, lossless, lossy, jpg, png, avif, convert
+Requires at least: 5.5
+Tested up to: 5.8
 Requires PHP: 5.6
 Stable tag: 0.1.0
 License: GPLv2 or later
