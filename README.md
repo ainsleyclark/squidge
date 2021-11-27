@@ -39,7 +39,7 @@ Converts JPG and PNG images to `.avif` files using `libavif` with the appended e
 ## Installation
 
 1. Go to the [releases](https://github.com/ainsleyclark/squidge/releases) section and download the plugin.
-2. Upload the `wp-squidge` plugin to your `/wp-content/plugins/` directory.
+2. Upload the `squidge` plugin to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the "Plugins" menu in WordPress.
 4. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
 run the commands listed dependent on your operating system.

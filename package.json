@@ -4,7 +4,8 @@
   "main": "index.js",
   "author": "Ainsley Clark",
   "scripts": {
-    "release": "release-it"
+    "release": "release-it",
+    "release:dry": "release-it --dry-run"
   },
   "devDependencies": {
     "release-it": "^14.11.8"

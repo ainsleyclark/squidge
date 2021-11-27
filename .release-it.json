@@ -1,4 +1,7 @@
 {
+  "hooks": {
+    "before:github:release": "wp dist archive ."
+  },
   "git": {
     "changelog": null,
     "commit": true,
