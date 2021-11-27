@@ -9,7 +9,7 @@
  * @package     Squidge
  * @version     0.1.1
  * @category    CLI
- * @repo        https://github.com/ainsleyclark/wp-squidge
+ * @repo        https://github.com/ainsleyclark/squidge
  *
  */
 

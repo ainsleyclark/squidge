@@ -11,7 +11,7 @@
  * @version     0.1.1
  * @author      Ainsley Clark
  * @category    Admin
- * @repo        https://github.com/ainsleyclark/wp-squidge
+ * @repo        https://github.com/ainsleyclark/squidge
  *
  */
 

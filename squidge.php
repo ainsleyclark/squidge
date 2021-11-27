@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name:     Squidge
- * Plugin URI:      https://github.com/ainsleyclark/wp-squidge
- * Description:     A WordPress Plugin to compress and convert images using cwebp, jpegoptim and optipng.
+ * Plugin URI:      https://github.com/ainsleyclark/squidge
+ * Description:     A image optimisation plugin to compress and convert images using cwebp, jpegoptim, optipng and libavif.
  * Author:          Ainsley Clark
  * Author URI:      https://github.com/ainsleyclark
  * Text Domain:     wp-squidge
@@ -11,7 +11,7 @@
  * License:         GNU
  *
  * @package         Squidge
- * @repo            https://github.com/ainsleyclark/wp-squidge
+ * @repo            https://github.com/ainsleyclark/squidge
  */
 
 if (!defined('ABSPATH')) {
