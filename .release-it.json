@@ -14,9 +14,9 @@
     "releaseNotes": null
   },
   "github": {
-    "release": false,
+    "release": true,
     "releaseName": "Release ${version}",
-    "preRelease": true,
+    "preRelease": false,
     "assets": [
       "dist/squidge-${version}.zip"
     ]
