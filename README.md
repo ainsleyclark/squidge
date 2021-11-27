@@ -1,5 +1,5 @@
 <p align="left">
-    <img alt="logo" src="images/icon.svg" width="40%">
+    <img alt="logo" src="./images/icon.svg" width="40%">
 </p>
 
 # Squidge
