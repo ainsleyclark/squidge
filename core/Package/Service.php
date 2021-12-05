@@ -55,7 +55,7 @@ class Service
 		// Obtain the file and check if it exists.
 		$mainFile = self::get_file_path($attachment['file']);
 		if (!$mainFile) {
-			throw new Exception("File does not exist");
+			return;
 		}
 
 		// Convert main image.
@@ -106,12 +106,26 @@ class Service
 	/**
 	 * Checks if a command exists.
 	 *
+	 * shell_exec is required to check to see if the library
+	 * is installed on the client's operating system.
+	 * Checks to see if the command name is in the allowed
+	 * array before continuing.
+	 *
 	 * @return bool
-	 * @since 0.1.0
-	 * @date 24/11/2021
+	 * @since 0.1.2
+	 * @date 05/12/2021
 	 */
 	public static function installed()
 	{
+		$allowed = [
+			'jpegoptim',
+			'optipng',
+			'cwebp',
+			'avifenc',
+		];
+		if (!in_array(static::cmd_name(), $allowed)) {
+			return false;
+		}
 		$return = shell_exec(sprintf("which %s", escapeshellarg(static::cmd_name())));
 		return !empty($return);
 	}

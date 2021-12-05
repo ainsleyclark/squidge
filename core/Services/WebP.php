@@ -30,8 +30,17 @@ class WebP extends Service implements Convertor
 {
 
 	/**
+	 * DEFAULT_QUALITY is the default image quality
+	 * when converting to a WebP image.
+	 */
+	const DEFAULT_QUALITY = 80;
+
+	/**
 	 * Compress all image sizes if they are jpg or png
 	 * to webp with the given file path.
+	 *
+	 * exec is required to convert the WP image into
+	 * a WebP file.
 	 *
 	 * @param $filepath
 	 * @param $mime
@@ -45,7 +54,10 @@ class WebP extends Service implements Convertor
 		if ($mime != Mimes::PNG && $mime != Mimes::JPG) {
 			return;
 		}
-		exec(sprintf('%s -q %d %s -o %s 2> /dev/null', self::cmd_name(), 80, $filepath, $filepath . self::extension()));
+		if (!isset($args['quality'])) {
+			$args['quality'] = self::DEFAULT_QUALITY;
+		}
+		exec(sprintf('%s -q %d %s -o %s 2> /dev/null', escapeshellarg(self::cmd_name()), escapeshellarg($args['quality']), escapeshellarg($filepath), escapeshellarg($filepath . self::extension())));
 		Logger::info("Successfully converted to WebP file: " . $filepath . self::extension());
 	}
 
