@@ -8,7 +8,7 @@
  * library.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
@@ -39,22 +39,24 @@ class PNG extends Service implements Convertor
 	 * Compresses all image sizes have a jpg mime type
 	 * with the given file path.
 	 *
+	 * exec is required to compress the WP PNG image.
+	 *
 	 * @param $filepath
 	 * @param $mime
 	 * @param $args
 	 * @return void
-	 * @since 0.1.0
-	 * @date 24/11/2021
+	 * @since 0.1.2
+	 * @date 05/12/2021
 	 */
 	public static function convert($filepath, $mime, $args)
 	{
-		if (!isset($args['quality'])) {
-			$args['quality'] = self::DEFAULT_OPTIMIZATION;
-		}
 		if ($mime != Mimes::PNG) {
 			return;
 		}
-		exec(sprintf('%s -clobber -strip all -o %d %s 2> /dev/null', self::cmd_name(), $args['optimization'], $filepath));
+		if (!isset($args['quality'])) {
+			$args['quality'] = self::DEFAULT_OPTIMIZATION;
+		}
+		exec(sprintf('%s -clobber -strip all -o %d %s 2> /dev/null', escapeshellarg(self::cmd_name()), escapeshellarg($args['optimization']), escapeshellarg($filepath)));
 		Logger::info("Successfully compressed image PNG file: " . $filepath);
 	}
 

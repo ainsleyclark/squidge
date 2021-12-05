@@ -8,7 +8,7 @@
  * the cwebp library.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
@@ -33,20 +33,23 @@ class AVIF extends Service implements Convertor
 	 * Compresses all image sizes have a png mime type
 	 * with the given file path.
 	 *
+	 * exec is required to convert the WP image into
+	 * a AVIF file.
+	 *
 	 * @param $filepath
 	 * @param $mime
 	 * @param $args
-	 * @return voidwp_terms
-	 * @since 0.1.0
-	 * @date 24/11/2021
+	 * @return void
+	 * @since 0.1.2
+	 * @date 05/12/2021
 	 */
 	public static function convert($filepath, $mime, $args)
 	{
 		if ($mime != Mimes::PNG && $mime != Mimes::JPG) {
 			return;
 		}
-		exec(sprintf('%s --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s 2> /dev/null', self::cmd_name(), $filepath, $filepath . self::extension()));
-		Logger::info("Successfully converted to Avif file: " . $filepath . self::extension());
+		exec(sprintf('%s --min 0 --max 63 --speed 6 -a end-usage=q -a cq-level=18 -a tune=ssim %s %s 2> /dev/null', escapeshellarg(self::cmd_name()), escapeshellarg($filepath), escapeshellarg($filepath . self::extension())));
+		Logger::info("Successfully converted to AVIF file: " . $filepath . self::extension());
 	}
 
 	/**

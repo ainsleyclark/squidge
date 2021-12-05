@@ -6,8 +6,8 @@
  * Description:     A image optimisation plugin to compress and convert images using cwebp, jpegoptim, optipng and libavif.
  * Author:          Ainsley Clark
  * Author URI:      https://github.com/ainsleyclark
- * Text Domain:     wp-squidge
- * Version:         0.1.1
+ * Text Domain:     squidge
+ * Version:         0.1.2
  * License:         GNU
  *
  * @package         Squidge
@@ -36,12 +36,22 @@ if (file_exists(__DIR__ . '/functions/functions.php')) {
 	require(__DIR__ . '/functions/functions.php');
 }
 
-// Add Settings Link.
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'add_settings_link');
-function add_settings_link($links)
-{
-	$links[] = '<a href="' .
-		admin_url('options-general.php?page=crb_carbon_fields_container_squidge.php') .
-		'">' . __('Settings') . '</a>';
-	return $links;
+if (!function_exists('squidge_add_settings_link')) {
+
+	/**
+	 * Add Settings Link.
+	 *
+	 * @param $links
+	 * @return mixed
+	 * @since 0.1.0
+	 * @date 24/11/2021
+	 */
+	function squidge_add_settings_link($links)
+	{
+		$links[] = '<a href="' .
+			admin_url('options-general.php?page=crb_carbon_fields_container_squidge.php') .
+			'">' . __('Settings') . '</a>';
+		return $links;
+	}
+	add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'squidge_add_settings_link');
 }

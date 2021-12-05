@@ -6,7 +6,7 @@
  * Helper template functions.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Functions
  * @repo        https://github.com/ainsleyclark/squidge
@@ -35,6 +35,8 @@ if (!function_exists('squidge_image')) {
 	 * @param string $class
 	 * @param false $lazy
 	 * @return string
+	 * @since 0.1.0
+	 * @date 24/11/2021
 	 */
 	function squidge_image($image_id, $class = '', $lazy = false)
 	{

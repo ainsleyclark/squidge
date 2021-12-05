@@ -1,5 +1,5 @@
 {
-    "name": "ainsley-clark/wp-squidge",
+    "name": "ainsley-clark/squidge",
     "description": "A Wordpress Plugin to compress and convert images using cwebp, jpegoptim and optipng.",
     "type": "plugin",
     "license": "MIT",

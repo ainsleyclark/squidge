@@ -7,7 +7,7 @@
  * functions via the WP CLI.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @category    CLI
  * @repo        https://github.com/ainsleyclark/squidge
  *
