@@ -7,7 +7,7 @@
  * coverts or compresses an image.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge

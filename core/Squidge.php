@@ -6,7 +6,7 @@
  * Main squidge class.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
@@ -16,6 +16,7 @@
 namespace Squidge;
 
 use Squidge\Admin;
+use function Clue\StreamFilter\fun;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
@@ -60,9 +61,8 @@ final class Squidge
 	 *
 	 * @param void
 	 * @return void
-	 * @date 24/11/2021
-	 * @since 0.1.0
-	 *
+	 * @since 0.1.2
+	 * @date 05/12/2021
 	 */
 	private function initialize()
 	{
@@ -76,7 +76,9 @@ final class Squidge
 		$this->define('SQUIDGE_UPLOAD_DIR', $uploadData['basedir']);
 		$this->define('SQUIDGE_UPLOAD_URL', $uploadData['baseurl']);
 		new Admin\Fields();
-		new Admin\Upload();
+		add_action('carbon_fields_fields_registered', function () {
+			new Admin\Upload();
+		});
 	}
 
 	/**

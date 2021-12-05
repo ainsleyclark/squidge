@@ -8,7 +8,7 @@
  * library.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
@@ -56,7 +56,7 @@ class JPG extends Service implements Convertor
 		if (!isset($args['quality'])) {
 			$args['quality'] = self::DEFAULT_QUALITY;
 		}
-		exec(sprintf('%s --strip-all --overwrite --max=%d %s 2> /dev/null', escapeshellarg(self::cmd_name()), escapeshellarg($args['quality']), escapeshellarg($filepath)));
+		exec(sprintf('%s --strip-all --overwrite --max=%d %s 2> /dev/null', escapeshellarg(self::cmd_name()), $args['quality'], escapeshellarg($filepath)));
 		Logger::info("Successfully compressed image JPG file: " . $filepath);
 	}
 

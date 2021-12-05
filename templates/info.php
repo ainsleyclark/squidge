@@ -7,7 +7,7 @@
  * about Squidge.
  *
  * @package     Squidge
- * @version     0.1.1
+ * @version     0.1.2
  * @author      Ainsley Clark
  * @category    Templates
  * @repo        https://github.com/ainsleyclark/squidge
