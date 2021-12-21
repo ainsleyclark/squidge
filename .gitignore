@@ -31,3 +31,6 @@ CREDENTIALS.md
 *.njsproj
 *.sln
 *.sw?
+
+# Build
+build
