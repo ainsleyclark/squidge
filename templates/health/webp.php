@@ -6,7 +6,7 @@
  * WebP health status template.
  *
  * @package     Squidge
- * @version     0.1.3
+ * @version     0.1.4
  * @author      Ainsley Clark
  * @category    Templates
  * @repo        https://github.com/ainsleyclark/squidge

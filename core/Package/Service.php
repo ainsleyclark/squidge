@@ -7,7 +7,7 @@
  * and executing commands.
  *
  * @package     Squidge
- * @version     0.1.3
+ * @version     0.1.4
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
@@ -190,7 +190,6 @@ class Service
 	public static function has_compressed($id)
 	{
 		$meta = get_post_meta($id, self::META_KEY . '_' . static::cmd_name());
-		Logger::info("Here" . !empty($meta));
 		return !empty($meta);
 	}
 

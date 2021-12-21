@@ -8,7 +8,7 @@
  * library.
  *
  * @package     Squidge
- * @version     0.1.3
+ * @version     0.1.4
  * @author      Ainsley Clark
  * @category    Admin
  * @repo        https://github.com/ainsleyclark/squidge

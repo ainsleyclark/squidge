@@ -5,7 +5,7 @@ Tags: image, compression, plugin, image compression, webp, lazy load, optimizati
 Requires at least: 5.5
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,13 +31,10 @@ hard work for you.
 
 Squidge compresses and converts image files when the user has uploaded a file to WordPress.
 
-Compresses JPG images using `jpegoptim`.
-
-Compresses PNG images using `optipng`.
-
-Converts JPG and PNG images to `.webp` files using `cwebp` with the appended extension  e.g. `image.jpg.webp`.
-
-Converts JPG and PNG images to `.avif` files using `libavif` with the appended extension  e.g. `image.jpg.avif`.
+- Compresses JPG images using `jpegoptim`.
+- Compresses PNG images using `optipng`.
+- Converts JPG and PNG images to `.webp` files using `cwebp` with the appended extension  e.g. `image.jpg.webp`.
+- Converts JPG and PNG images to `.avif` files using `libavif` with the appended extension  e.g. `image.jpg.avif`.
 
 == Installation ==
 

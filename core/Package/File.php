@@ -7,7 +7,7 @@
  * front end.
  *
  * @package     Squidge
- * @version     0.1.3
+ * @version     0.1.4
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
