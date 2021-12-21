@@ -122,7 +122,7 @@ class Squidge_CLI extends WP_CLI_Command
 					WP_CLI::log('WebP Conversion...');
 					WebP::process($id, $image_args);
 				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
+					WP_CLI::log($e->getMessage());
 				}
 			}
 
@@ -132,7 +132,7 @@ class Squidge_CLI extends WP_CLI_Command
 					WP_CLI::log('AVIF Conversion...');
 					AVIF::process($id, $image_args);
 				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
+					WP_CLI::log($e->getMessage());
 				}
 			}
 
@@ -142,7 +142,7 @@ class Squidge_CLI extends WP_CLI_Command
 					WP_CLI::log('JPG Compression...');
 					JPG::process($id, $image_args);
 				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
+					WP_CLI::log($e->getMessage());
 				}
 			}
 
@@ -152,7 +152,7 @@ class Squidge_CLI extends WP_CLI_Command
 					WP_CLI::log('PNG Compression...');
 					PNG::process($id, $image_args);
 				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
+					WP_CLI::log($e->getMessage());
 				}
 			}
 
