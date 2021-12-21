@@ -41,3 +41,5 @@ node_modules
 *.zip
 .release-it.json
 dist
+build
+images
