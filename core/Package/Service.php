@@ -7,7 +7,7 @@
  * and executing commands.
  *
  * @package     Squidge
- * @version     0.1.2
+ * @version     0.1.3
  * @author      Ainsley Clark
  * @category    Class
  * @repo        https://github.com/ainsleyclark/squidge
@@ -17,6 +17,7 @@
 namespace Squidge\Package;
 
 use Exception;
+use Squidge\Log\Logger;
 
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
@@ -24,6 +25,12 @@ if (!defined('ABSPATH')) {
 
 class Service
 {
+
+	/**
+	 * META_KEY is the meta key for lookup for the
+	 * service.
+	 */
+	const META_KEY = "_squidge_compressed";
 
 	/**
 	 * Processes the file attachment.
@@ -42,9 +49,9 @@ class Service
 			$attachment = wp_get_attachment_metadata($attachment);
 		}
 
-		// Return if the cwebp library is not installed.
+		// Return if the library is not installed.
 		if (!self::installed()) {
-			throw new Exception(self::$cmd_name . " is not installed");
+			return;
 		}
 
 		// Check if the file key exists.
@@ -55,6 +62,12 @@ class Service
 		// Obtain the file and check if it exists.
 		$mainFile = self::get_file_path($attachment['file']);
 		if (!$mainFile) {
+			return;
+		}
+
+		// Check if the attachment has already been compressed.
+		$id = attachment_url_to_postid($attachment['file']);
+		if (self::has_compressed($id)) {
 			return;
 		}
 
@@ -72,6 +85,9 @@ class Service
 			}
 			static::convert($path, self::get_mime_type($path), $args);
 		}
+
+		// Update post meta for attachment.
+		self::update_meta($id);
 	}
 
 	/**
@@ -161,5 +177,31 @@ class Service
 	private static function get_mime_type($file)
 	{
 		return mime_content_type($file);
+	}
+
+	/**
+	 * Determines if the attachment has been compressed.
+	 *
+	 * @param $id
+	 * @return bool
+	 * @since 0.1.3
+	 * @date 21/12/2021
+	 */
+	private static function has_compressed($id)
+	{
+		$meta = get_post_meta($id, self::META_KEY);
+		return !empty($meta);
+	}
+
+	/**
+	 * Updates post meta for squidge.
+	 *
+	 * @param $id
+	 * @since 0.1.3
+	 * @date 21/12/2021
+	 */
+	private static function update_meta($id)
+	{
+		update_post_meta($id, self::META_KEY, true);
 	}
 }

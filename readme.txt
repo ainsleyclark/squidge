@@ -5,7 +5,7 @@ Tags: image, compression, plugin, image compression, webp, lazy load, optimizati
 Requires at least: 5.5
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,7 +56,7 @@ To render images in templates, you can either set up nginx or apache rules to se
 and returns the output.
 
 ### Function
-```php
+`
 /**
  * Returns a <picture> element with source media for the standard file passed
  * (such as a JPG), the .avif file, the .webp file (if to exist on the file system).
@@ -73,10 +73,10 @@ and returns the output.
  * @return string
  */
 function squidge_image($image_id, $class = '', $lazy = false)
-```
+`
 
 ### Output
-```html
+`
 <picture class="picture">
 	<!-- Loads if AVIF is supported and the window is smaller than 400px wide -->
 	<source media="(max-width: 400px)" srcset="/sample-image.jpg.avif" type="image/avif">
@@ -88,7 +88,7 @@ function squidge_image($image_id, $class = '', $lazy = false)
 	<!-- Default -->
 	<img src="/sample-image.jpg" alt="Alt text" title="Sample JPG">
 </picture>
-```
+`
 
 == Frequently Asked Questions ==
 
