@@ -184,12 +184,13 @@ class Service
 	 *
 	 * @param $id
 	 * @return bool
-	 * @since 0.1.3
+	 * @since 0.1.4
 	 * @date 21/12/2021
 	 */
-	private static function has_compressed($id)
+	public static function has_compressed($id)
 	{
-		$meta = get_post_meta($id, self::META_KEY);
+		$meta = get_post_meta($id, self::META_KEY . '_' . static::cmd_name());
+		Logger::info("Here" . !empty($meta));
 		return !empty($meta);
 	}
 
@@ -197,11 +198,11 @@ class Service
 	 * Updates post meta for squidge.
 	 *
 	 * @param $id
-	 * @since 0.1.3
+	 * @since 0.1.4
 	 * @date 21/12/2021
 	 */
-	private static function update_meta($id)
+	public static function update_meta($id)
 	{
-		update_post_meta($id, self::META_KEY, true);
+		update_post_meta($id, self::META_KEY . '_' . static::cmd_name(), true);
 	}
 }
