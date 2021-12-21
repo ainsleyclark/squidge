@@ -1,0 +1,43 @@
+/**
+ * admin.css
+ *
+ * Admin style changes for Squidge. These styles are
+ * exclusively for the health status.
+ *
+ * @author Ainsley Clark
+ * @author URL:   https://www.ainsleyclark.com
+ * @author email: info@ainsleyclark.com
+ */
+
+.squidge .cf-field__help {
+	display: block;
+	margin-top: 0;
+	font-style: normal;
+	width: 100%;
+}
+
+.squidge code {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.squidge-disabled input {
+	pointer-events:none;
+	user-select: none;
+}
+
+.squidge-health-inactive input {
+	content: "Inactive";
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.squidge-health-active input {
+	content: "Active";
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+
