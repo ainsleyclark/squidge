@@ -4,7 +4,7 @@
 
 # Squidge
 
-is a **FREE** WordPress plugin, built with developers in mind, for the compression and conversion of images using `jpegoptim`,
+Is a **FREE** WordPress plugin, built with developers in mind, for the compression and conversion of images using `jpegoptim`,
 `optipng`, `cwebp`, and `libavif`. It’s **extremely** simple to use and is designed to increase PSI and boost rankings.
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
