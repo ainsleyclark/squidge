@@ -4,8 +4,8 @@
 
 # Squidge
 
-Is **FREE** WordpPress Plugin built for developers in mind compressing and convert images using `jpegoptim`,
-`optipng`, `cwebp`, and `libavif`. It's **extremley** simple to use and is designed to increase PSI and boost rankings.
+Is a **FREE** WordPress plugin, built with developers in mind, for the compression and conversion of images using `jpegoptim`,
+`optipng`, `cwebp`, and `libavif`. It’s **extremely** simple to use and is designed to increase PSI and boost rankings.
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![GNU General Public License 3.0](https://img.shields.io/github/license/ainsleyclark/squidge.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
