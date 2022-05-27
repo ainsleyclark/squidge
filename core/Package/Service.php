@@ -44,26 +44,17 @@ class Service
 	 */
 	public static function process($attachment, $args)
 	{
-<<<<<<< HEAD
 
     // If the attachment is an ID, obtain the metadata.
 		if (is_int($attachment)) {
 			$attachment = wp_get_attachment_metadata($attachment);
 		}
-=======
-		// If the attachment is an ID, obtain the metadata.
-		if (is_int($attachment)) {
-			$attachment = wp_get_attachment_metadata($attachment);
-		}
-
->>>>>>> 7b619e303dee40a5fc93bd2fb1d2e1beb4a3823c
 		// Return if the library is not installed.
 		if (!self::installed()) {
 			return;
 		}
 
 		// Check if the file key exists.
-<<<<<<< HEAD
 		$at_files = $attachment['file'];
 
 		foreach($at_files as $at_file){
@@ -75,10 +66,6 @@ class Service
 			echo $e->getMessage();
 			continue;
 		}
-=======
-		if (!isset($attachment['file'])) {
-			throw new Exception("File attachment is not set.");
->>>>>>> 7b619e303dee40a5fc93bd2fb1d2e1beb4a3823c
 		}
 
 		// Obtain the file and check if it exists.
@@ -95,11 +82,7 @@ class Service
 
 		// Convert main image.
 		static::convert($mainFile, self::get_mime_type($mainFile), $args);
-<<<<<<< HEAD
 		
-=======
-
->>>>>>> 7b619e303dee40a5fc93bd2fb1d2e1beb4a3823c
 		// Loop over the sizes and convert them.
 		foreach ($attachment['sizes'] as $size) {
 			if (!isset($size['file'])) {
@@ -215,10 +198,7 @@ class Service
 	 */
 	public static function has_compressed($id)
 	{
-<<<<<<< HEAD
     $i = 0;
-=======
->>>>>>> 7b619e303dee40a5fc93bd2fb1d2e1beb4a3823c
 		$meta = get_post_meta($id, self::META_KEY . '_' . static::cmd_name());
 		return !empty($meta);
 	}

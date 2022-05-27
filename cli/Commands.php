@@ -157,20 +157,13 @@ class Squidge_CLI extends WP_CLI_Command
 			}
 
 			WP_CLI::success("Processed image: " . $image->post_title . PHP_EOL);
-<<<<<<< HEAD
 			$count_arr[]= $image->post_title;
 			$counter = count($count_arr);
-=======
->>>>>>> 7b619e303dee40a5fc93bd2fb1d2e1beb4a3823c
 		}
 
 		wp_reset_postdata();
 
-<<<<<<< HEAD
 		WP_CLI::success('Successfully processed ' . $counter . ' images. ');
-=======
-		WP_CLI::success('Successfully processed images.');
->>>>>>> 7b619e303dee40a5fc93bd2fb1d2e1beb4a3823c
 	}
 
 	/**
