@@ -1,0 +1,14 @@
+{
+  "name": "squidge",
+  "version": "0.1.4",
+  "main": "index.js",
+  "author": "Ainsley Clark",
+  "scripts": {
+    "release": "release-it",
+    "release:dry": "release-it --dry-run",
+    "zip": "wp dist-archive . ./squidge/dist/squidge-${version}.zip --create-target-dir"
+  },
+  "devDependencies": {
+    "release-it": "^14.11.8"
+  }
+}

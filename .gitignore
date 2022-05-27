@@ -1,0 +1,36 @@
+# WP
+.DS_Store
+phpcs.xml
+phpunit.xml
+Thumbs.db
+wp-cli.local.yml
+node_modules/
+*.sql
+*.tar.gz
+*.zip
+
+# OS Folders
+.DS_Store
+node_modules
+
+# Local environment files
+/.env
+/.env.local
+/.env.*.local
+
+# App Specific
+dist
+CREDENTIALS.md
+
+# Editor directories and files
+.idea
+.idea/
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build
+build

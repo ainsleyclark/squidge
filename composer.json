@@ -1,0 +1,22 @@
+{
+    "name": "ainsley-clark/squidge",
+    "description": "A Wordpress Plugin to compress and convert images using cwebp, jpegoptim and optipng.",
+    "type": "plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ainsley Clark",
+            "email": "info@ainsleyclark.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "htmlburger/carbon-fields-plugin": "^3.3",
+        "htmlburger/carbon-field-number": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Squidge\\": "core/"
+        }
+    }
+}

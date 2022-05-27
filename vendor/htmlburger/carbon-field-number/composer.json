@@ -1,0 +1,35 @@
+{
+    "name": "htmlburger/carbon-field-number",
+    "description": "Carbon Fields extension, that adds a number field type.",
+    "keywords": ["wordpress", "carbon-field", "carbon-field-number"],
+    "homepage": "https://github.com/htmlburger/carbon-field-number/",
+    "type": "library",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Plamen Kostadinov",
+            "email": "pkostadinov.2create@gmail.com"
+        },
+        {
+            "name": "Atanas Angelov",
+            "email": "atanas.angelov.dev@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Viktor Vasilev",
+            "email": "liberalcho@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "htmlburger/carbon-fields": "^3.0"
+    },
+    "autoload": {
+        "files": [
+            "field.php"
+        ],
+        "psr-4": {
+            "Carbon_Field_Number\\": "core/"
+        }
+    }
+}
