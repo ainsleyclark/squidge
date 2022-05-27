@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:     Squidge
+ * Plugin Name:     Squidge modified
  * Plugin URI:      https://github.com/ainsleyclark/squidge
  * Description:     A image optimisation plugin to compress and convert images using cwebp, jpegoptim, optipng and libavif.
  * Author:          Ainsley Clark
@@ -27,8 +27,8 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 Squidge\Squidge::boot();
 
 // Require CLI.
-if (file_exists(__DIR__ . '/cli/commands.php')) {
-	require(__DIR__ . '/cli/commands.php');
+if (file_exists(__DIR__ . '/cli/Commands.php')) {
+	require(__DIR__ . '/cli/Commands.php');
 }
 
 // Require Functions.

@@ -44,19 +44,28 @@ class Service
 	 */
 	public static function process($attachment, $args)
 	{
-		// If the attachment is an ID, obtain the metadata.
+
+    // If the attachment is an ID, obtain the metadata.
 		if (is_int($attachment)) {
 			$attachment = wp_get_attachment_metadata($attachment);
 		}
-
 		// Return if the library is not installed.
 		if (!self::installed()) {
 			return;
 		}
 
 		// Check if the file key exists.
-		if (!isset($attachment['file'])) {
+		$at_files = $attachment['file'];
+
+		foreach($at_files as $at_file){
+		try {
+			if (!isset($at_file)) {
 			throw new Exception("File attachment is not set.");
+			}
+		}catch(Exception $e){
+			echo $e->getMessage();
+			continue;
+		}
 		}
 
 		// Obtain the file and check if it exists.
@@ -73,7 +82,7 @@ class Service
 
 		// Convert main image.
 		static::convert($mainFile, self::get_mime_type($mainFile), $args);
-
+		
 		// Loop over the sizes and convert them.
 		foreach ($attachment['sizes'] as $size) {
 			if (!isset($size['file'])) {
