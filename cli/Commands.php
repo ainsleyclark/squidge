@@ -105,7 +105,7 @@ class Squidge_CLI extends WP_CLI_Command
 			'post_type'      => 'attachment',
 			'post_mime_type' => 'image',
 			'post_status'    => 'inherit',
-			'posts_per_page' => 1000,
+			'posts_per_page' => 10000,
 			'offset' => 0 + (1000 * $i),
 		);
 
