@@ -98,11 +98,15 @@ class Squidge_CLI extends WP_CLI_Command
 		$assoc_args['webp'] = filter_var($assoc_args['webp'], FILTER_VALIDATE_BOOLEAN);
 		$assoc_args['avif'] = filter_var($assoc_args['avif'], FILTER_VALIDATE_BOOLEAN);
 
+		$i = 0;
+		while(true){
+		$i++;
 		$query_images_args = array(
 			'post_type'      => 'attachment',
 			'post_mime_type' => 'image',
 			'post_status'    => 'inherit',
-			'posts_per_page' => -1,
+			'posts_per_page' => 1000,
+			'offset' => 0 + (1000 * $i),
 		);
 
 		$query_images = new WP_Query($query_images_args);
@@ -160,6 +164,7 @@ class Squidge_CLI extends WP_CLI_Command
 			$count_arr[]= $image->post_title;
 			$counter = count($count_arr);
 		}
+	}
 
 		wp_reset_postdata();
 
