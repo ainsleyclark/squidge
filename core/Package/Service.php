@@ -198,7 +198,6 @@ class Service
 	 */
 	public static function has_compressed($id)
 	{
-    $i = 0;
 		$meta = get_post_meta($id, self::META_KEY . '_' . static::cmd_name());
 		return !empty($meta);
 	}
