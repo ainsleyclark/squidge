@@ -9,8 +9,8 @@ Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Squidge is a FREE WordPress plugin, built with developers in mind, for the compression and conversion of images using jpegoptim,
-optipng, cwebp, and libavif. It’s extremely simple to use and is designed to increase PSI and boost rankings.
+Squidge is a FREE WordpPress Plugin built for developers in mind compressing and convert images using jpegoptim,
+optipng, cwebp, and libavif. It's extremley simple to use and is designed to increase PSI and boost rankings.
 
 == Description ==
 
