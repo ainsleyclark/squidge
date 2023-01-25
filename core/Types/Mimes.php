@@ -19,7 +19,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-abstract class Mimes {
+abstract class Mimes
+{
 	const PNG = "image/png";
 	const JPG = 'image/jpeg';
 }
