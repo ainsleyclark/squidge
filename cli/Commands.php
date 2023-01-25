@@ -65,10 +65,10 @@ class Squidge_CLI extends WP_CLI_Command
 	 * converted to .webp and .avif file formats.
 	 *
 	 * Args:
-	 *    - jpg=false       To disable JPG compression.
-	 *    - png=false     To disable PNG compression.
-	 *    - webp=false     To disable WebP conversion.
-	 *    - avif=false       To disable AVIF conversion.
+	 *    - jpg=true       To enable JPG compression.
+	 *    - png=true     To enable PNG compression.
+	 *    - webp=true     To enable WebP conversion.
+	 *    - avif=true       To enable AVIF conversion.
 	 *    - quality=80     The quality of compression
 	 *    - optimization=02  Optimization of PNG images
 	 *    - force=false  Force reoptimization of already optimized images
