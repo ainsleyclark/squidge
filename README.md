@@ -44,7 +44,7 @@ Converts JPG and PNG images to `.avif` files using `libavif` with the appended e
 2. Upload the `squidge` plugin to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the "Plugins" menu in WordPress.
 4. Check the Settings tab under `Settings | Squidge Options` to ensure the libraries are installed, if they aren't,
-run the commands listed dependent on your operating system.
+   run the commands listed dependent on your operating system.
 5. Check the individual optimisation tabs and adjust settings accordingly.
 6. Done!
 
@@ -184,14 +184,15 @@ wp squidge run --jpeg=false --quality=80 --optimization=o3
 
 #### Arguments
 
-| Argument          | Default Value            | Accepted Values          | Description       |
-| ----------------- | ------------------------ | ------------------------ | ----------------- |
-| jpg               | `true`                   | `true`/`false`           | If JPG compression should run.
-| png               | `true`                   | `true`/`false`           | If PNG compression should run.
-| webp              | `true`                   | `true`/`false`           | If WebP conversion should run.
-| avif              | `true`                   | `true`/`false`           | If AVIF conversion should run.
-| quality           | `80`                     | `0` to `100`             | Compression quality of the images.
-| optimization      | `02`                     | `o1` to `o7`             | Optimisation of PNG images.
+| Argument     | Default Value | Accepted Values          | Description       |
+|--------------|---------------| ------------------------ | ----------------- |
+| jpg          | `true`        | `true`/`false`           | If JPG compression should run.
+| png          | `true`        | `true`/`false`           | If PNG compression should run.
+| webp         | `true`        | `true`/`false`           | If WebP conversion should run.
+| avif         | `true`        | `true`/`false`           | If AVIF conversion should run.
+| quality      | `80`          | `0` to `100`             | Compression quality of the images.
+| optimization | `02`          | `o1` to `o7`             | Optimisation of PNG images.
+| force        | `false`       | `true`/`false`           | Force reoptimization of already optimized images.
 
 ## Road Map
 

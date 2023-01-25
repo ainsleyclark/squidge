@@ -67,7 +67,7 @@ class Service
 
 		// Check if the attachment has already been compressed.
 		$id = attachment_url_to_postid($attachment['file']);
-		if (self::has_compressed($id)) {
+		if (self::has_compressed($id) && !$args['force']) {
 			return;
 		}
 
