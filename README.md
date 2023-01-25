@@ -184,15 +184,16 @@ wp squidge run --jpeg=false --quality=80 --optimization=o3
 
 #### Arguments
 
-| Argument     | Default Value | Accepted Values          | Description       |
-|--------------|---------------| ------------------------ | ----------------- |
-| jpg          | `true`        | `true`/`false`           | If JPG compression should run.
-| png          | `true`        | `true`/`false`           | If PNG compression should run.
-| webp         | `true`        | `true`/`false`           | If WebP conversion should run.
-| avif         | `true`        | `true`/`false`           | If AVIF conversion should run.
-| quality      | `80`          | `0` to `100`             | Compression quality of the images.
-| optimization | `02`          | `o1` to `o7`             | Optimisation of PNG images.
-| force        | `false`       | `true`/`false`           | Force reoptimization of already optimized images.
+| Argument        | Default Value | Accepted Values          | Description       |
+|-----------------|---------------| ------------------------ | ----------------- |
+| jpg             | `true`        | `true`/`false`           | If JPG compression should run.
+| png             | `true`        | `true`/`false`           | If PNG compression should run.
+| webp            | `true`        | `true`/`false`           | If WebP conversion should run.
+| avif            | `true`        | `true`/`false`           | If AVIF conversion should run.
+| quality         | `80`          | `0` to `100`             | Compression quality of the images.
+| optimization    | `02`          | `o1` to `o7`             | Optimisation of PNG images.
+| force           | `false`       | `true`/`false`           | Force reoptimization of already optimized images.
+| thumbnails-only | `false`       | `true`/`false`           | Optimize only thumbnails.
 
 ## Road Map
 

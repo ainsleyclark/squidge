@@ -72,6 +72,7 @@ class Squidge_CLI extends WP_CLI_Command
 	 *    - quality=80     The quality of compression
 	 *    - optimization=02  Optimization of PNG images
 	 *    - force=false  Force reoptimization of already optimized images
+	 *    - thumbnails-only=false  Only optimize thumbnails
 	 *
 	 * @param $args
 	 * @param $assoc_args
@@ -92,6 +93,7 @@ class Squidge_CLI extends WP_CLI_Command
 				'webp' => true,
 				'avif' => true,
 				'force' => false,
+				'thumbnails-only' => false,
 			]
 		);
 
@@ -100,6 +102,7 @@ class Squidge_CLI extends WP_CLI_Command
 		$assoc_args['webp'] = filter_var($assoc_args['webp'], FILTER_VALIDATE_BOOLEAN);
 		$assoc_args['avif'] = filter_var($assoc_args['avif'], FILTER_VALIDATE_BOOLEAN);
 		$assoc_args['force'] = filter_var($assoc_args['force'], FILTER_VALIDATE_BOOLEAN);
+		$assoc_args['thumbnailsOnly'] = filter_var($assoc_args['thumbnails-only'], FILTER_VALIDATE_BOOLEAN);
 
 		$page = 0;
 		$counter = 0;
@@ -121,6 +124,7 @@ class Squidge_CLI extends WP_CLI_Command
 					'quality' => $assoc_args['quality'],
 					'optimization' => $assoc_args['optimization'],
 					'force' => $assoc_args['force'],
+					'thumbnailsOnly' => $assoc_args['thumbnailsOnly'],
 				];
 
 				WP_CLI::log(WP_CLI::colorize("%BProcessing image: %n") . $image->post_title);

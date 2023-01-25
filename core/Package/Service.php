@@ -72,7 +72,7 @@ class Service
 		}
 
 		// Convert main image.
-		static::convert($mainFile, self::get_mime_type($mainFile), $args);
+		if (!$args['thumbnailsOnly']) static::convert($mainFile, self::get_mime_type($mainFile), $args);
 
 		// Loop over the sizes and convert them.
 		foreach ($attachment['sizes'] as $size) {
