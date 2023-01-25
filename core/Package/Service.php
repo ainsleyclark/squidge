@@ -111,6 +111,9 @@ class Service
 		$sizes = get_intermediate_image_sizes();
 		foreach ($sizes as $size) {
 			$src = wp_get_attachment_image_src($id, $size);
+			if (!$src) {
+				continue;
+			}
 			$path = self::get_file_path($src[0] . static::extension());
 			if (!$path) {
 				continue;
