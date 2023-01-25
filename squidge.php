@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:     Squidge modified
+ * Plugin Name:     Squidge
  * Plugin URI:      https://github.com/ainsleyclark/squidge
  * Description:     A image optimisation plugin to compress and convert images using cwebp, jpegoptim, optipng and libavif.
  * Author:          Ainsley Clark

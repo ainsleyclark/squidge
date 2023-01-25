@@ -20,7 +20,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-interface Convertor {
+interface Convertor
+{
 
 	/**
 	 * Converts or compresses a file taking in a filepath

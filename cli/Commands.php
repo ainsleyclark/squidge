@@ -65,11 +65,11 @@ class Squidge_CLI extends WP_CLI_Command
 	 * converted to .webp and .avif file formats.
 	 *
 	 * Args:
-	 *    - jpg=false  	 	 To disable JPG compression.
-	 *    - png=false   	 To disable PNG compression.
-	 *    - webp=false  	 To disable WebP conversion.
+	 *    - jpg=false       To disable JPG compression.
+	 *    - png=false     To disable PNG compression.
+	 *    - webp=false     To disable WebP conversion.
 	 *    - avif=false       To disable AVIF conversion.
-	 *    - quality=80   	 The quality of compression
+	 *    - quality=80     The quality of compression
 	 *    - optimization=02  Optimization of PNG images
 	 *
 	 * @param $args
@@ -84,12 +84,12 @@ class Squidge_CLI extends WP_CLI_Command
 		$assoc_args = wp_parse_args(
 			$assoc_args,
 			[
-				'quality'      => 80,
+				'quality' => 80,
 				'optimization' => 'o2',
-				'jpg'         => true,
-				'png'          => true,
-				'webp'         => true,
-				'avif'         => true,
+				'jpg' => true,
+				'png' => true,
+				'webp' => true,
+				'avif' => true,
 			]
 		);
 
@@ -98,73 +98,79 @@ class Squidge_CLI extends WP_CLI_Command
 		$assoc_args['webp'] = filter_var($assoc_args['webp'], FILTER_VALIDATE_BOOLEAN);
 		$assoc_args['avif'] = filter_var($assoc_args['avif'], FILTER_VALIDATE_BOOLEAN);
 
-		$i = 0;
-		while(true){
-		$i++;
-		$query_images_args = array(
-			'post_type'      => 'attachment',
-			'post_mime_type' => 'image',
-			'post_status'    => 'inherit',
-			'posts_per_page' => 10000,
-			'offset' => 0 + (1000 * $i),
-		);
+		$page = 0;
+		$counter = 0;
+		$query_loop = true;
+		while ($query_loop === true) {
+			$query_images_args = array(
+				'post_type' => 'attachment',
+				'post_mime_type' => 'image',
+				'post_status' => 'inherit',
+				'posts_per_page' => 1000,
+				'paged' => $page,
+			);
 
-		$query_images = new WP_Query($query_images_args);
+			$query_images = new WP_Query($query_images_args);
 
-		foreach ($query_images->posts as $image) {
-			$id = $image->ID;
-			$image_args = [
-				'quality'      => $assoc_args['quality'],
-				'optimization' => $assoc_args['optimization']
-			];
+			foreach ($query_images->posts as $image) {
+				$id = $image->ID;
+				$image_args = [
+					'quality' => $assoc_args['quality'],
+					'optimization' => $assoc_args['optimization']
+				];
 
-			WP_CLI::log(WP_CLI::colorize("%BProcessing image: %n") . $image->post_title);
+				WP_CLI::log(WP_CLI::colorize("%BProcessing image: %n") . $image->post_title);
 
-			// WebP
-			if ($assoc_args['webp']) {
-				try {
-					WP_CLI::log('WebP Conversion...');
-					WebP::process($id, $image_args);
-				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
+				// WebP
+				if ($assoc_args['webp']) {
+					try {
+						WP_CLI::log('WebP Conversion...');
+						WebP::process($id, $image_args);
+					} catch (Exception $e) {
+						WP_CLI::error($e->getMessage());
+					}
 				}
+
+				// Avif
+				if ($assoc_args['avif']) {
+					try {
+						WP_CLI::log('AVIF Conversion...');
+						AVIF::process($id, $image_args);
+					} catch (Exception $e) {
+						WP_CLI::error($e->getMessage());
+					}
+				}
+
+				// JPG
+				if ($assoc_args['jpg']) {
+					try {
+						WP_CLI::log('JPG Compression...');
+						JPG::process($id, $image_args);
+					} catch (Exception $e) {
+						WP_CLI::error($e->getMessage());
+					}
+				}
+
+				// PNG
+				if ($assoc_args['png']) {
+					try {
+						WP_CLI::log('PNG Compression...');
+						PNG::process($id, $image_args);
+					} catch (Exception $e) {
+						WP_CLI::error($e->getMessage());
+					}
+				}
+
+				WP_CLI::success("Processed image: " . $image->post_title . PHP_EOL);
+				$counter++;
 			}
 
-			// Avif
-			if ($assoc_args['avif']) {
-				try {
-					WP_CLI::log('AVIF Conversion...');
-					AVIF::process($id, $image_args);
-				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
-				}
+			if ($query_images->max_num_pages >= $page) {
+				$query_loop = false;
+			} else {
+				$page++;
 			}
-
-			// JPG
-			if ($assoc_args['jpg']) {
-				try {
-					WP_CLI::log('JPG Compression...');
-					JPG::process($id, $image_args);
-				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
-				}
-			}
-
-			// PNG
-			if ($assoc_args['png']) {
-				try {
-					WP_CLI::log('PNG Compression...');
-					PNG::process($id, $image_args);
-				} catch (Exception $e) {
-					WP_CLI::error($e->getMessage());
-				}
-			}
-
-			WP_CLI::success("Processed image: " . $image->post_title . PHP_EOL);
-			$count_arr[]= $image->post_title;
-			$counter = count($count_arr);
 		}
-	}
 
 		wp_reset_postdata();
 
@@ -177,7 +183,8 @@ class Squidge_CLI extends WP_CLI_Command
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
-	private function print_welcome() {
+	private function print_welcome()
+	{
 		WP_CLI::line(WP_CLI::colorize('%GWelcome to the Squidge CLI...%n' . PHP_EOL));
 	}
 
