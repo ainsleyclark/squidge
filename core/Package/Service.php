@@ -55,17 +55,8 @@ class Service
     }
 
     // Check if the file key exists.
-    $at_files = $attachment['file'];
-
-    foreach ($at_files as $at_file) {
-      try {
-        if (!isset($at_file)) {
-          throw new Exception("File attachment is not set.");
-        }
-      } catch (Exception $e) {
-        echo $e->getMessage();
-        continue;
-      }
+    if (!isset($attachment['file'])) {
+      throw new Exception("File attachment is not set.");
     }
 
     // Obtain the file and check if it exists.
