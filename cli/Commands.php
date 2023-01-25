@@ -98,15 +98,16 @@ class Squidge_CLI extends WP_CLI_Command
     $assoc_args['webp'] = filter_var($assoc_args['webp'], FILTER_VALIDATE_BOOLEAN);
     $assoc_args['avif'] = filter_var($assoc_args['avif'], FILTER_VALIDATE_BOOLEAN);
 
-    $i = 0;
-    while (true) {
-      $i++;
+    $page = 0;
+    $counter = 0;
+    $query_loop = true;
+    while ($query_loop === true) {
       $query_images_args = array(
         'post_type' => 'attachment',
         'post_mime_type' => 'image',
         'post_status' => 'inherit',
-        'posts_per_page' => 10000,
-        'offset' => 0 + (1000 * $i),
+        'posts_per_page' => 1000,
+        'paged' => $page,
       );
 
       $query_images = new WP_Query($query_images_args);
@@ -161,8 +162,13 @@ class Squidge_CLI extends WP_CLI_Command
         }
 
         WP_CLI::success("Processed image: " . $image->post_title . PHP_EOL);
-        $count_arr[] = $image->post_title;
-        $counter = count($count_arr);
+        $counter++;
+      }
+
+      if ($query_images->max_num_pages >= $page) {
+        $query_loop = false;
+      } else {
+        $page++;
       }
     }
 
