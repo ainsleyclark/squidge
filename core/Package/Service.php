@@ -79,7 +79,8 @@ class Service
 			if (!isset($size['file'])) {
 				continue;
 			}
-			$path = self::get_file_path($size['file']);
+			$basepath = str_replace(basename($attachment['file']), "", $attachment['file']);
+			$path = self::get_file_path($basepath . $size['file']);
 			if (!$path) {
 				continue;
 			}
@@ -110,11 +111,11 @@ class Service
 		// Delete the image sizes.
 		$sizes = get_intermediate_image_sizes();
 		foreach ($sizes as $size) {
-			$src = wp_get_attachment_image_src($id, $size);
-			if (!$src) {
+			$fileInfos = image_get_intermediate_size($id, $size);
+			if (empty($fileInfos)) {
 				continue;
 			}
-			$path = self::get_file_path($src[0] . static::extension());
+			$path = self::get_file_path($fileInfos['path'] . static::extension());
 			if (!$path) {
 				continue;
 			}
@@ -155,14 +156,14 @@ class Service
 	 * If the file does not exist on the file system, the
 	 * function will return false.
 	 *
-	 * @param $path
+	 * @param $path - Path of file inside uploads folder
 	 * @return string
 	 * @since 0.1.0
 	 * @date 24/11/2021
 	 */
 	private static function get_file_path($path)
 	{
-		$file = wp_get_upload_dir()['path'] . DIRECTORY_SEPARATOR . basename($path);
+		$file = wp_get_upload_dir()['basedir'] . DIRECTORY_SEPARATOR . $path;
 		if (file_exists($file)) {
 			return $file;
 		}
