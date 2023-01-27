@@ -65,12 +65,14 @@ class Squidge_CLI extends WP_CLI_Command
 	 * converted to .webp and .avif file formats.
 	 *
 	 * Args:
-	 *    - jpg=false       To disable JPG compression.
-	 *    - png=false     To disable PNG compression.
-	 *    - webp=false     To disable WebP conversion.
-	 *    - avif=false       To disable AVIF conversion.
+	 *    - jpg=true       To enable JPG compression.
+	 *    - png=true     To enable PNG compression.
+	 *    - webp=true     To enable WebP conversion.
+	 *    - avif=true       To enable AVIF conversion.
 	 *    - quality=80     The quality of compression
 	 *    - optimization=02  Optimization of PNG images
+	 *    - force=false  Force reoptimization of already optimized images
+	 *    - thumbnails-only=false  Only optimize thumbnails
 	 *
 	 * @param $args
 	 * @param $assoc_args
@@ -90,6 +92,8 @@ class Squidge_CLI extends WP_CLI_Command
 				'png' => true,
 				'webp' => true,
 				'avif' => true,
+				'force' => false,
+				'thumbnails-only' => false,
 			]
 		);
 
@@ -97,6 +101,8 @@ class Squidge_CLI extends WP_CLI_Command
 		$assoc_args['png'] = filter_var($assoc_args['png'], FILTER_VALIDATE_BOOLEAN);
 		$assoc_args['webp'] = filter_var($assoc_args['webp'], FILTER_VALIDATE_BOOLEAN);
 		$assoc_args['avif'] = filter_var($assoc_args['avif'], FILTER_VALIDATE_BOOLEAN);
+		$assoc_args['force'] = filter_var($assoc_args['force'], FILTER_VALIDATE_BOOLEAN);
+		$assoc_args['thumbnailsOnly'] = filter_var($assoc_args['thumbnails-only'], FILTER_VALIDATE_BOOLEAN);
 
 		$page = 0;
 		$counter = 0;
@@ -116,7 +122,9 @@ class Squidge_CLI extends WP_CLI_Command
 				$id = $image->ID;
 				$image_args = [
 					'quality' => $assoc_args['quality'],
-					'optimization' => $assoc_args['optimization']
+					'optimization' => $assoc_args['optimization'],
+					'force' => $assoc_args['force'],
+					'thumbnailsOnly' => $assoc_args['thumbnailsOnly'],
 				];
 
 				WP_CLI::log(WP_CLI::colorize("%BProcessing image: %n") . $image->post_title);

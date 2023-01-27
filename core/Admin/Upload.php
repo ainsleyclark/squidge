@@ -66,6 +66,8 @@ class Upload
 		try {
 			$args = [
 				'quality' => carbon_get_theme_option('squidge_jpg_quality'),
+				'force' => false,
+				'thumbnailsOnly' => false
 			];
 			JPG::process($attachment, $args);
 		} catch (Exception $e) {
@@ -92,6 +94,8 @@ class Upload
 		try {
 			$args = [
 				'optimization' => carbon_get_theme_option('squidge_webp_quality'),
+				'force' => false,
+				'thumbnailsOnly' => false
 			];
 			PNG::process($attachment, $args);
 		} catch (Exception $e) {
@@ -119,6 +123,8 @@ class Upload
 		try {
 			$args = [
 				'quality' => carbon_get_theme_option('squidge_webp_quality'),
+				'force' => false,
+				'thumbnailsOnly' => false
 			];
 			WebP::process($attachment, $args);
 		} catch (Exception $e) {
@@ -144,7 +150,11 @@ class Upload
 		}
 
 		try {
-			AVIF::process($attachment, []);
+			$args = [
+				'force' => false,
+				'thumbnailsOnly' => false
+			];
+			AVIF::process($attachment, $args);
 		} catch (Exception $e) {
 			Logger::error($e->getMessage());
 		}
